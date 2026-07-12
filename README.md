@@ -26,13 +26,15 @@ npm test
 `keystatic.config.ts` switches storage automatically based on environment — no code change needed to move between them:
 
 - **Local dev** (`npm run dev` or a local `npm run build`): writes directly to the filesystem in `content/`.
-- **Deployed on Vercel** (`VERCEL` env var is set): reads/writes through the GitHub API instead, via a GitHub App, since Vercel's filesystem isn't writable/persistent.
+- **Deployed with GitHub mode configured** (`NEXT_PUBLIC_KEYSTATIC_GITHUB_APP_SLUG` is set): reads/writes through the GitHub API instead, via a GitHub App, since Vercel's filesystem isn't writable/persistent.
+
+`keystatic.config.ts` is imported by both server code and the browser-side Keystatic app, so every value the switch depends on has to be `NEXT_PUBLIC_`-prefixed — anything else silently becomes `undefined` in the browser bundle even though it's set correctly on the server. Two real bugs came from missing this (a mode switch on plain `VERCEL`, and a repo name on plain `KEYSTATIC_GITHUB_REPO`) — worth remembering if this ever gets refactored.
 
 Setting up the GitHub App for production editing is a one-time, mostly-manual process — see the walkthrough the assistant provided, or Keystatic's own docs at https://keystatic.com/docs/github-model. Required environment variables (set in Vercel Project Settings → Environment Variables, and in `.env.local` for anything you want to test locally in GitHub mode):
 
 | Variable | Where it comes from | What it's for |
 |---|---|---|
-| `KEYSTATIC_GITHUB_REPO` | You choose it — `owner/repo` | Which repo Keystatic commits to |
+| `NEXT_PUBLIC_KEYSTATIC_GITHUB_REPO` | You choose it — `owner/repo` | Which repo Keystatic commits to. Public — the browser builds GitHub API queries from it directly |
 | `KEYSTATIC_GITHUB_CLIENT_ID` | GitHub App settings page | OAuth client ID for the app |
 | `KEYSTATIC_GITHUB_CLIENT_SECRET` | GitHub App settings page | OAuth client secret |
 | `KEYSTATIC_SECRET` | Generate: `openssl rand -hex 32` | Signs Keystatic's session cookies |

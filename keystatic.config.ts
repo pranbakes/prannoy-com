@@ -8,22 +8,20 @@ const tags = () =>
 
 /**
  * This file is imported by both server code and the browser-side Keystatic
- * app, so the switch must be a variable Next.js inlines identically into
- * both bundles — that means it has to be NEXT_PUBLIC_-prefixed. A plain
- * process.env.VERCEL check looked right (set on every Vercel deployment,
- * never locally) but silently resolved to `undefined` in the browser
- * bundle, since Next.js only inlines NEXT_PUBLIC_* vars client-side. That
- * made the server think "github" while the browser app still thought
- * "local," which is a broken combination, not a supported mode.
- *
- * NEXT_PUBLIC_KEYSTATIC_GITHUB_APP_SLUG is already required for GitHub
- * mode to function at all, so its presence doubles as the mode switch —
- * unset locally, set once you configure the GitHub App in Vercel.
+ * app, so every value it needs must be a variable Next.js inlines
+ * identically into both bundles — that means NEXT_PUBLIC_-prefixed. Two
+ * bugs already came from getting this wrong: a plain process.env.VERCEL
+ * check for storage.kind, and a plain KEYSTATIC_GITHUB_REPO for the repo
+ * itself. Both silently resolved to undefined in the browser (Next.js only
+ * inlines NEXT_PUBLIC_* client-side), so the server thought "github" while
+ * the browser's GraphQL queries got null owner/name variables. Neither the
+ * mode switch nor the repo name is sensitive, so both are fine to expose.
  */
 const storage = process.env.NEXT_PUBLIC_KEYSTATIC_GITHUB_APP_SLUG
   ? {
       kind: "github" as const,
-      repo: process.env.KEYSTATIC_GITHUB_REPO as `${string}/${string}`,
+      repo: process.env
+        .NEXT_PUBLIC_KEYSTATIC_GITHUB_REPO as `${string}/${string}`,
     }
   : { kind: "local" as const };
 
