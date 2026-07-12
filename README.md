@@ -1,36 +1,43 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# prannoy.com
 
-## Getting Started
+Personal site — essays, poems, a corkboard, and projects. Next.js (App Router) + Tailwind + Keystatic.
 
-First, run the development server:
+## Getting started
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) for the site, [http://localhost:3000/admin](http://localhost:3000/admin) for the Keystatic editor (redirects to `/keystatic`, where the app actually lives — see note in `keystatic.config.ts`).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Content lives as markdown/YAML files under `content/`, edited either directly or through `/admin`.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Testing
 
-## Learn More
+Pure logic (tag aggregation, essay anchor matching) has unit tests, run with Node's built-in test runner:
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+npm test
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Keystatic: local vs. GitHub storage
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+`keystatic.config.ts` switches storage automatically based on environment — no code change needed to move between them:
 
-## Deploy on Vercel
+- **Local dev** (`npm run dev` or a local `npm run build`): writes directly to the filesystem in `content/`.
+- **Deployed on Vercel** (`VERCEL` env var is set): reads/writes through the GitHub API instead, via a GitHub App, since Vercel's filesystem isn't writable/persistent.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Setting up the GitHub App for production editing is a one-time, mostly-manual process — see the walkthrough the assistant provided, or Keystatic's own docs at https://keystatic.com/docs/github-model. Required environment variables (set in Vercel Project Settings → Environment Variables, and in `.env.local` for anything you want to test locally in GitHub mode):
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+| Variable | Where it comes from | What it's for |
+|---|---|---|
+| `KEYSTATIC_GITHUB_REPO` | You choose it — `owner/repo` | Which repo Keystatic commits to |
+| `KEYSTATIC_GITHUB_CLIENT_ID` | GitHub App settings page | OAuth client ID for the app |
+| `KEYSTATIC_GITHUB_CLIENT_SECRET` | GitHub App settings page | OAuth client secret |
+| `KEYSTATIC_SECRET` | Generate: `openssl rand -hex 32` | Signs Keystatic's session cookies |
+| `NEXT_PUBLIC_KEYSTATIC_GITHUB_APP_SLUG` | The `/apps/<slug>` part of your app's URL | Public — browser needs it to build install/auth links |
+| `NEXT_PUBLIC_SITE_URL` | Your production domain | RSS links, sitemap URLs, OG image resolution |
+| `BUTTONDOWN_API_KEY` | https://buttondown.com/settings/api | Server-side only, powers `/api/subscribe` |
+
+See `.env.example` for a copyable template.

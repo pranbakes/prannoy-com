@@ -1,0 +1,30 @@
+@import "tailwindcss";
+
+@theme {
+  --color-board: #1e2b24;
+  --color-paper: #edeae0;
+  --color-paper-dark: #e3dfcf;
+  --color-card: #f5f2e8;
+  --color-pen: #b5473c;
+  --color-rule: #c9c3b0;
+  --color-muted: #8c8676;
+  --color-muted-board: #8c968f;
+  --color-ink: #2a2a28;
+
+  --font-serif: var(--font-eb-garamond);
+  --font-sans: var(--font-inter);
+  --font-hand: var(--font-caveat);
+
+  --text-hero: 36px;
+  --text-page-h1: 26px;
+  --text-essay-h1: 30px;
+  --text-essay-body: 14.5px;
+  --text-poem-body: 22px;
+  --text-list-title: 19px;
+}
+
+body {
+  background: var(--color-paper);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+}
