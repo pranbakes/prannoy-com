@@ -46,7 +46,7 @@ export default async function ProjectsPage() {
           </li>
         ))}
         {projects.length === 0 && (
-          <li className="py-5 text-sm text-muted">Nothing built yet.</li>
+          <li className="py-5 font-hand text-lg text-pen">coming soon</li>
         )}
       </ul>
     </div>

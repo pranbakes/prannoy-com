@@ -50,8 +50,8 @@ export default async function PoemsIndex({
           </li>
         ))}
         {filtered.length === 0 && (
-          <li className="py-3 text-sm text-muted">
-            {tag ? `No poems tagged “${tag}”.` : "No poems yet."}
+          <li className="py-3 font-hand text-lg text-pen">
+            {tag ? `No poems tagged “${tag}”.` : "coming soon"}
           </li>
         )}
       </ul>

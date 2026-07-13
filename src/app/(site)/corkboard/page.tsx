@@ -35,7 +35,7 @@ export default async function CorkboardPage() {
           ))}
         </div>
         {sorted.length === 0 && (
-          <p className="mt-8 text-sm text-muted">Nothing pinned yet.</p>
+          <p className="mt-8 font-hand text-lg text-pen">coming soon</p>
         )}
       </div>
     </div>

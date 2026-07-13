@@ -1,6 +1,6 @@
 const socials = [
-  { href: "https://twitter.com", label: "twitter" },
-  { href: "https://github.com", label: "github" },
+  { href: "https://twitter.com/prannoy", label: "twitter" },
+  { href: "https://github.com/pranbakes", label: "github" },
 ];
 
 export default function Footer() {
