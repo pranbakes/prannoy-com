@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { reader } from "@/lib/reader";
+import { Circle } from "@/components/red-pen";
 import NewsletterSignup from "@/components/newsletter-signup";
 
 export default async function Home() {
@@ -18,29 +19,22 @@ export default async function Home() {
 
   return (
     <div>
-      <section className="mx-auto max-w-2xl px-6 pb-16 pt-24">
-        <h1 className="font-serif text-hero font-medium">Prannoy Nambiar</h1>
-        <p className="mt-6 font-serif text-lg leading-relaxed text-ink">
-          Essays on education, work, philosophy, and whatever I&apos;m
-          listening to. Poems. Companies I&apos;ve built and founders I back.
-          All in one place, because keeping them apart never told the truth
-          about any of them.
-        </p>
-        <p className="mt-6 font-serif text-base leading-relaxed text-muted">
-          I take on a small number of advisory relationships and invest
-          early. If you&apos;re building in education,{" "}
-          <a
-            href="mailto:hi@prannoy.com"
-            className="text-pen underline underline-offset-4 hover:text-ink"
-          >
-            write to me
-          </a>
-          .
-        </p>
+      <section className="bg-board py-24 text-paper">
+        <div className="mx-auto max-w-4xl px-6">
+          <h1 className="font-serif text-hero font-medium">
+            Hi, glad you&apos;re <Circle>here</Circle>.
+          </h1>
+          <p className="mt-6 max-w-[60ch] font-sans text-sm leading-relaxed text-muted-board">
+            Essays on education, philosophy, work, and play. Poems for
+            everything else. Companies I&apos;ve built, and founders
+            I&apos;ve backed building theirs. It all lives in one place
+            because keeping it apart never told the truth about any of it.
+          </p>
+        </div>
       </section>
 
-      <section className="bg-paper px-6 py-16">
-        <div className="mx-auto max-w-4xl">
+      <section className="bg-paper py-16">
+        <div className="mx-auto max-w-4xl px-6">
           <h2 className="font-serif text-page-h1 font-medium">Recent essays</h2>
           <ul className="mt-6 divide-y divide-dashed divide-rule">
             {recentEssays.map(({ slug, entry }) => (
@@ -60,8 +54,8 @@ export default async function Home() {
         </div>
       </section>
 
-      <section className="bg-paper-dark px-6 py-16">
-        <div className="mx-auto max-w-4xl">
+      <section className="bg-paper-dark py-16">
+        <div className="mx-auto max-w-4xl px-6">
           <h2 className="font-serif text-page-h1 font-medium">Corkboard</h2>
           {recentPins.length > 0 ? (
             <div className="mt-6 grid grid-cols-2 gap-4 sm:grid-cols-4">
@@ -86,8 +80,19 @@ export default async function Home() {
         </div>
       </section>
 
-      <section className="bg-paper px-6 py-16">
-        <div className="mx-auto max-w-4xl">
+      <section className="bg-paper py-16">
+        <div className="mx-auto max-w-4xl px-6">
+          <p className="mb-8 font-serif text-essay-body leading-relaxed text-muted">
+            I take on a small number of advisory relationships and invest
+            early. If you&apos;re building in education,{" "}
+            <a
+              href="mailto:hi@prannoy.com"
+              className="text-pen underline underline-offset-4 hover:text-ink"
+            >
+              write to me
+            </a>
+            .
+          </p>
           <NewsletterSignup />
         </div>
       </section>

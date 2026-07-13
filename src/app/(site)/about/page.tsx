@@ -29,10 +29,10 @@ export default function AboutPage() {
           </p>
           <p>
             The building goes two ways too. I&apos;ve run a company and
-            shipped products used by millions, so when I advise founders
-            I&apos;m not theorizing. I angel invest for the same reason: I
-            know what the work costs, and I&apos;d rather be useful than
-            watch. Most of my checks go to education.
+            shipped products at scale, so when I advise founders I&apos;m
+            not theorizing. I angel invest for the same reason: I know what
+            the work costs, and I&apos;d rather be useful than watch. Most
+            of my checks go to education.
           </p>
           <p>
             The pattern I keep noticing is that the poem and the product are
@@ -69,10 +69,8 @@ export default function AboutPage() {
         <p className="mt-2 text-sm text-muted">
           Prannoy Nambiar&apos;s poems have appeared in Delta Poetry Review,
           Wildscape Literary Journal, and Indelible Literary and Arts
-          Journal. He is at work on a first collection. He writes essays on
-          education, technology, and culture, has founded and led product at
-          learning companies, and invests in early-stage founders. He lives
-          in Brooklyn.
+          Journal. He is at work on a first collection. A former math
+          teacher, he lives in Brooklyn.
         </p>
       </div>
     </div>
