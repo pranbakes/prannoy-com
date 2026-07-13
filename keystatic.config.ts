@@ -54,12 +54,12 @@ export default config({
         thumbnail: fields.image({
           label: "Thumbnail",
           description: "64px index thumbnail. Not used as an in-page hero.",
-          directory: "content/essays",
+          directory: "public/images/essays",
           publicPath: "/images/essays/",
         }),
         ogImage: fields.image({
           label: "OG image",
-          directory: "content/essays",
+          directory: "public/images/essays",
           publicPath: "/images/essays/",
         }),
         body: fields.document({
@@ -142,7 +142,7 @@ export default config({
             quote: fields.text({ label: "Quote text", multiline: true }),
             image: fields.image({
               label: "Image",
-              directory: "content/corkboard",
+              directory: "public/images/corkboard",
               publicPath: "/images/corkboard/",
               validation: { isRequired: true },
             }),
@@ -194,7 +194,7 @@ export default config({
         }),
         thumbnail: fields.image({
           label: "Thumbnail",
-          directory: "content/projects",
+          directory: "public/images/projects",
           publicPath: "/images/projects/",
         }),
         url: fields.url({ label: "URL", validation: { isRequired: false } }),

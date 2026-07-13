@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import type { Metadata } from "next";
 import { reader } from "@/lib/reader";
 import { uniqueTags } from "@/lib/tags";
@@ -31,7 +32,17 @@ export default async function EssaysIndex({
       <ul className="mt-8 divide-y divide-dashed divide-rule">
         {filtered.map(({ slug, entry }) => (
           <li key={slug} className="flex gap-4 py-5">
-            <div className="h-16 w-16 flex-shrink-0 bg-card" />
+            {entry.thumbnail ? (
+              <Image
+                src={entry.thumbnail}
+                alt=""
+                width={64}
+                height={64}
+                className="h-16 w-16 flex-shrink-0 object-cover"
+              />
+            ) : (
+              <div className="h-16 w-16 flex-shrink-0 bg-card" />
+            )}
             <div>
               <Link href={`/essays/${slug}`}>
                 <p className="font-serif text-list-title">{entry.title}</p>
