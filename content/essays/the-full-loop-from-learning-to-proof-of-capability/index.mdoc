@@ -1,0 +1,168 @@
+---
+title: "The Full Loop: From Learning to Proof of Capability"
+date: 2026-06-17
+dek: The technology works. Adoption is near universal. So why can't ed-tech prove anyone is actually learning? A case for owning the full loop of capability.
+tags:
+  - education
+  - technology
+annotations: []
+---
+*What makes a learning company defensible in the next era of ed-tech*
+
+---
+
+Among UK undergraduates, AI use has gone [from novelty to near universal in three years](https://www.hepi.ac.uk/reports/student-generative-ai-survey-2026/), with 95% now using it in some form. Duolingo has [more than 130 million monthly active users](https://investors.duolingo.com/news-releases/news-release-details/duolingo-surpasses-50-million-daily-active-users-grows-dau-36). MagicSchool AI is used by [more than 6 million educators](https://www.magicschool.ai/blog-posts/series-b-fundraise-for-teacher-ai) across thousands of schools. The ed-tech industry has never looked more alive.
+
+And the technology can deliver. A [Harvard study](https://news.harvard.edu/gazette/story/2024/09/professor-tailored-ai-tutor-to-physics-course-engagement-doubled/), later published in the journal Scientific Reports, found students using an AI tutor learned more than twice as much as peers in a traditional active-learning classroom, in less time and with higher engagement. It was a randomized experiment, not a vendor case study, run across 194 undergraduates in a physics course. A [Brookings analysis](https://www.brookings.edu/articles/what-the-research-shows-about-generative-ai-in-tutoring/) this year found the pattern holds more broadly: across multiple independent meta-reviews, well-designed AI tutoring can match human tutoring.
+
+Read those two facts together and you would expect a golden age. But the Harvard result came from one carefully built system measured under experimental conditions. That is not what most of the 95% are using. They are using general-purpose tools that nobody designed for learning and nobody is measuring. So the most basic question goes unanswered: of all this activity, is any of it actually working at scale?
+
+The industry has spent a decade building for scale and engagement. Enrollment numbers. DAUs. Streaks. Completion rates. These metrics are seductive because they grow. But an [analysis of 221 MOOCs found median completion rates of just 12.6%](https://www.irrodl.org/index.php/irrodl/article/view/2112), and completion was never the right measure anyway. Finishing a course and learning something you can use are not the same thing. Outcomes are harder to measure than engagement, so the industry mostly stopped trying. AI has widened the gap rather than closed it: we can now personalize and ship content faster than ever, with less idea than ever of whether it produces durable outcomes.
+
+> "The Harvard result came from one carefully built system measured under experimental conditions. That is not what most of the 95% are using."
+
+I spent years building in this space. I got some things right and some important things wrong. This essay is an attempt to be honest about both, and to map where I think the real breakthroughs are coming.
+
+---
+
+## What I believed in 2019
+
+In February 2019, I wrote [a post](https://prannoy.com/artificial-intelligence-in-education) trying to make sense of what "AI in education" actually meant, focused on the component parts: machine learning, NLP, deep learning, big-data analytics. For each one I wrote a use case and a prediction.
+
+Some predictions landed. The NLP prediction reads true today: chatbots and virtual tutors intervening in the learning process based on intuition of the concept at play. That was February 2019. GPT-4 launched four years later. Grading software that assesses writing on tone and critical analysis, beyond grammar alone? That exists. Adaptive assessments that adjust in real-time based on formative scores? Standard practice on the better platforms today.
+
+Some predictions didn't. Facial recognition ran into privacy and public trust. Real-time emotion analytics remains a research project. Thought-controlled gaming is still nascent, though I'm still bullish on it.
+
+What I think about most beyond the predictions is a risk I flagged at the end of the write-up, almost as an afterthought:
+
+> "Tracking impact of artificial intelligence features on actual student learning and assessment scores has of yet been ignored. How can one prove that instituting artificial intelligence in classroom technology actually improves student learning?"
+
+I wrote that seven years ago. It is still, largely, unanswered.
+
+A year later I founded [Bansho](/) around a thesis that felt urgent: that content adapted to a learner's context, pace, and prior knowledge could drive real outcomes rather than time-on-screen. The pandemic had collapsed the distinction between online and in-person learning overnight. We built fast, got quietly acquired after 18 months, and I held that unanswered question ever since.
+
+---
+
+## What I got wrong
+
+I optimized for the wrong variable.
+
+Content personalization is a real problem. Knowing a learner struggles with inferencing but excels at recall, and adjusting accordingly, is useful. The better platforms do this reasonably well. But content personalization is not the hard problem. The hard problem is personalization of ***context***.
+
+Context is why someone is learning. The job they are trying to get, the promotion they are working toward, the career they are trying to change. Content personalization shows a progression based on what a person has already consumed. Context personalization asks what they are trying to do, then delivers what they need to learn to do it.
+
+A learner who completes a data analysis course has consumed content. A learner who applies it to a real project, receives feedback, and can demonstrate the capability to a future employer has closed a loop. One is a content delivery problem. The other is a context and capability problem. The industry has spent a decade solving the first, without paying too much attention to the second.
+
+My second error was identifying the "hard" problem in education as content delivery, rather than proof of capability.
+
+Getting content to people is largely solved and infrastructure has never been more sophisticated. Streaming video, adaptive quizzes, mobile-first design, AI-generated explanations. Yet, the most basic question in education remains almost entirely unanswered: did the person actually learn something they can use?
+
+This is the full loop problem. Owning learning content is one thing. Owning assessment is harder. Owning proof of demonstrated capability requires all three stages working as an integrated system. Most learning products own one leg of that loop. Very few own all three. The ones that do are quietly becoming the most defensible businesses in the space.
+
+Both of my mistakes share a root cause. Ed-tech founders optimized for the north star metrics that were valued by the traditional VCs mining for software industry-like returns in the education sector. So the industry optimized for what it could track and called it progress. Enrollment, completion, engagement, time-on-platform became proxies for value because learning itself is hard to measure. The result is a generation of products genuinely good at getting people to show up, and genuinely uncertain about whether anything lasting happens when they do.
+
+---
+
+## What changed
+
+Two things changed that make the full loop problem more solvable now than at any point in the last decade.
+
+The first change is technical. Large language models did more than improve learning content; they made a fundamentally different kind of learning experience possible. Before 2022, building a genuinely adaptive conversational tutor, one that responds to confusion in real time, asks Socratic questions, and surfaces the right challenge at the right moment, required resources available only to well-funded research institutions. A small team can build this today.
+
+That Harvard physics finding is the clearest proof of what becomes possible when that capability is deployed well. The Brookings meta-review confirmed the pattern holds across multiple independent studies. This is step-change improvement and it is now within reach of any team serious enough to build toward it.
+
+The second change is in the market. For most of ed-tech's history, learners arrived with loosely defined intentions - satisfy curiosity, get a credential, or just kill time. Today is a different story. For example, [more than eight in ten learners on Coursera](https://www.coursera.org/enterprise/resources/ebook/learner-outcomes) arrive explicitly to advance their careers. They are investing, and they expect a return.
+
+> "More than eight in ten learners on Coursera today arrive explicitly to advance their careers. They are investing, and they expect a return."
+
+When learners arrive with a specific outcome in mind, platforms become accountable for whether that outcome is delivered. Completion certificates that don't translate to opportunities lose their value. Courses that don't produce demonstrable capability get abandoned. The demand signal for proof of capability is now difficult to ignore.
+
+On the enterprise side, the same pressure is arriving from a different direction. Companies that have invested heavily in AI upskilling are beginning to ask whether any of it is working. CFOs and CHROs want proof of ROI in a way they rarely demanded before. Bottom-up AI adoption has produced incremental efficiency gains, but the companies pulling ahead are redesigning entire workflows around demonstrated capability. They need learning partners who can prove capability was actually developed. That requirement is now showing up in procurement conversations, renewal negotiations, and platform evaluation criteria. The bar is quickly, and appropriately, rising.
+
+---
+
+## USE CASE 01
+
+## Adaptive Tutoring
+
+Adaptive tutoring is as old as ed-tech itself. For most of that history, it was aspiration more than reality. The systems that existed were rule-based and brittle, able to adjust difficulty along a single dimension, but unable to respond to how a specific person actually thinks and gets confused. The shift in this use case is the technical foundation underneath all the tutoring solutions.
+
+[Carnegie Learning's LiveHint AI](https://discover.carnegielearning.com/livehint-ai) shows what this looks like in practice. [Trained on data from 5.5 million students working through 1.2 billion math problems across 25 years](https://www.businesswire.com/news/home/20231130974040/en/Carnegie-Learning-Announces-LiveHint-AI), it is a system with deep pedagogical memory. It is one that has seen enough patterns of confusion and breakthrough to respond with something closer to genuine intuition than scripted feedback. Carnegie's track record predates the AI tutor: an [independent RAND study](https://www.carnegielearning.com/why-cl/research/) of the company's established blended-learning approach found it nearly doubled standardized test performance growth in its second year of implementation, across more than 18,000 students at 147 schools. LiveHint is the newer, generative layer built on top of that foundation, and it does not yet have evidence of that caliber behind it.
+
+[Khanmigo](https://www.khanacademy.org/khan-labs) takes a different but complementary approach. Rather than proprietary student data, it uses Socratic dialogue to guide learners toward answers rather than providing them directly. The bet is that reasoning through a problem matters as much as arriving at the correct answer. Early evidence suggests engagement and comprehension both improve when learners are guided rather than told.
+
+[Squirrel AI](https://time.com/collection/time100-most-influential-companies/2026/squirrel-ai-learning/) pushes that model to its limit. Rather than partnering with schools, the Chinese company runs its own network of after-school centers where an adaptive system breaks each subject into thousands of granular "knowledge points", then hunts for the specific gap in earlier, prerequisite knowledge that explains why a student is stuck. It reached 52 million students across roughly 60,000 schools and learning centers last year, mostly in Asia. A peer-reviewed study with independent researchers from SRI International found students using Squirrel AI made significantly greater gains in math than peers in traditional classrooms. The same coin has another side: some researchers question what fully AI-directed instruction does to a student's capacity for independent learning over time. That tension, between measured short-term gains and unmeasured long-term effects, is what every adaptive tutoring company will eventually have to answer for.
+
+### Criteria to win
+
+The model is now the commodity. The pedagogical data behind it, the years of watching where real students stall, is the thing competitors cannot clone overnight. That is what you are actually buying when you buy adaptive tutoring, and most products will not have that on Day 1.
+
+---
+
+## USE CASE 02
+
+## Personalization of Context
+
+Content personalization asks what a learner knows. **Context** personalization asks something harder: what is this person trying to do, and what do they need to learn to do it? In practice, it is the difference between a recommendation engine and a genuine learning partner.
+
+Most platforms today are sophisticated recommendation engines. They track what you have watched, completed, and what others like you have consumed, then surface more of the same. True context personalization requires understanding the learner's goal, their current role, the gap between where they are and where they are trying to go. It then adapts the entire learning experience, not only the content, around closing that gap.
+
+On the consumer side, [LinkedIn Learning](https://www.linkedin.com/learning) seems to be the furthest along, for an obvious reason: no other learning platform has access to the career context data LinkedIn does. Job title, career history, listed skills, the roles a person is applying for, all of it points toward where a learner is and where they are trying to go. LinkedIn Learning is beginning to use it to surface recommendations tied to career trajectory rather than consumption history. A learner transitioning from marketing to product management gets different recommendations than one deepening expertise in their current role.
+
+A caveat here is LinkedIn Learning is still doing context-informed content recommendation, not full context personalization. Knowing where someone wants to go and building a learning experience that gets them there are different problems. The data should be there, but their product hasn't yet closed the gap.
+
+On the enterprise side, [Degreed](https://degreed.com/) is the most explicit about the problem. Their thesis is that learning must connect directly to skills, roles, and performance outcomes rather than sitting alongside work as a separate activity. Co-founder and CEO David Blake has [framed it plainly](https://degreed.com/experience/newsroom/degreed-vision-2025-the-future-of-workforce-learning/): what matters is not access to information but systems that connect learning to skills, roles, and outcomes. The companies getting this right are not building better libraries. They are building operating systems for human capability development.
+
+### Criteria to win
+
+Access is the whole game. You need career and role data that is current and specific, outcome measurement tied to actual on-the-job performance, and a relationship with the employer deep enough to see how someone actually works. Any competent team can build the recommendation engine. Almost none of them can get the data that would make it worth using.
+
+---
+
+## USE CASE 03
+
+## Proof of Demonstrated Capability
+
+The first two use cases leave the hardest question unanswered: can the learner prove what they know in a way that means something to someone else?
+
+This is the full loop problem, and I think it is the most important unsolved problem in ed-tech.
+
+Owning learning content is one thing, and owning assessment is harder. Owning proof of demonstrated capability requires all three stages working as an integrated system. A certificate that signals completion is not proof of capability. Nor is a badge that signals a skill was covered. Proof of capability is demonstrated performance, verifiable by someone outside the learning experience, tied to outcomes that matter in the real world.
+
+Very few companies have built this. Two come closest, and a third points further ahead.
+
+[Stepful](https://www.stepful.com/) is the clearest current example. They operate in healthcare, training medical assistants and pharmacy technicians from enrollment through certification and into job placement. The outcome data is specific: an [87% pass rate on the national medical assistant certification exam and a 75% completion rate](https://www.businesswire.com/news/home/20241113248226/en/Stepful-Secures-$31.5-Million-Series-B-Led-by-Oak-HCFT-to-Address-U.S.-Healthcare-Worker-Shortage), both dramatically above industry norms. More importantly, Stepful does not consider the journey complete at certification. Job placement is part of the product. The loop closes when the learner is employed, not when they pass a test.
+
+Stepful works in part because healthcare has clearly defined competency standards and measurable hiring criteria. The what-good-looks-like problem is largely solved by the industry. Stepful's contribution is owning every stage of the journey rather than handing the learner off at each transition and hoping they make it through.
+
+[Multiverse](https://www.multiverse.io/) is pursuing the same thesis in a harder domain. Their apprenticeship model targets AI, data, and technology skills for working professionals, [partnering with over 1,500 companies in the US and UK](https://www.prnewswire.com/news-releases/multiverse-strengthens-leadership-team-amid-us-expansion-302300687.html). By the company's own accounting, Multiverse learners have driven over two billion dollars in productivity improvements for their employers. That figure is self-reported, so read it with some caution, but the framing itself is the point. Their progress is stated as a business outcome tied to demonstrated capability on the job, not as a completion rate. The bet is that structured apprenticeship, AI-enabled delivery, and human mentorship together produce capability that is both demonstrable and durable.
+
+> "By the company's own accounting, Multiverse learners have driven over two billion dollars in productivity improvements for their employers. Self-reported, yes, but stated as a business outcome rather than a completion rate."
+
+What Stepful and Multiverse have in common is that they both own the relationship with the employer, not just the learner. Both measure success in outcomes that exist outside the platform. And both treat the credential as one verified checkpoint within a longer arc of demonstrated performance.
+
+There is a third model worth naming, because it predates the other two by decades. In creative and technical fields, proof of capability has always lived in the portfolio. A designer or developer is not hired on a certificate or a badge. They are hired on the work itself. Platforms like [SuperHi](https://www.superhi.com/), which teaches creative coding and design, build their entire pedagogy around this: students finish each course with professional-quality projects that go straight into a portfolio. What they walk away with is the actual work product. It points to where credential-based fields may eventually head, toward evidence of what you can actually make rather than a transcript of what you sat through.
+
+The market is recognizing the difference. Organizations [issued 36 million digital credentials through Accredible in 2024](https://www.accredible.com/blog/accredibles-2024-year-in-review), a 45% increase over the prior year, as demand shifts toward verifiable ways to demonstrate competency without full degree programs. Learners want capability. Employers want confidence that credentials represent real performance. The platforms that can deliver both, at scale, across domains, will define the next era of ed-tech.
+
+### Criteria to win
+
+Let's start with the thing nobody wants: to measure course completion as a primary success metric. What leads to a true competitive advantage beyond is easier said than done, though. Employer relationships should be deep enough that your credential moves an actual hiring decision. Competency standards should explicit enough to observe and assess learnings in action. Performance should be measured in the real world as much as possible rather than through proxies. Plenty of companies will manage three of those four. The fourth is a choice about honesty, made over and over when no one is watching, and it is the one that separates a proof-of-capability business from just any certificate mill.
+
+---
+
+## What comes next
+
+The three use cases in this essay are a hierarchy. Adaptive tutoring is the foundation, the engine that makes a learner actually learn. Context personalization connects what someone learns to what they are trying to do, so the learning points somewhere. And proof of demonstrated capability is what makes both mean something, to the learner, to the employer, to anyone evaluating whether the learning actually worked.
+
+A platform that owns all three is hard to displace.
+
+The industry has spent a decade optimizing for what is easy to measure. That era is ending, not because the mission has changed but because the market has caught up with it. Learners arriving with specific career outcomes in mind will hold platforms accountable for whether those outcomes are delivered. Enterprises investing in AI upskilling are already asking harder questions about ROI. A mature product roadmap in ed-tech no longer reads as features shipped, but long-term outcomes. Efficacy has stopped being a philosophical position in sales conversations and started becoming an actual procurement requirement.
+
+For operators and PMs: the metrics that made sense in the engagement era are becoming liabilities. Completion rates, DAUs, time-on-platform still matter, but they are no longer sufficient. The products that will compound are built around a measurable outcome statement, working backward from the capability or outcome they want to produce. That requires a different kind of roadmap, different instrumentation, and a certain integrity when the engagement numbers look good but the outcome data is inconclusive.
+
+For investors: the most dynamic businesses in ed-tech are the ones that own the relationship between learning and demonstrated performance. Content without that relationship is just replicable infrastructure. The companies building toward the full loop are where durable value accumulates. The window to back the right bets is still wide open.
+
+Seven years ago I wrote that efficacy was the unsolved problem in ed-tech AI. Seven years later, it still is. For the first time, however, the technology is capable enough, the market is ready enough, and the evidence is clear enough that solving it is no longer just some idealistic future possibility. The time to execute is now!
+
+If you are building or investing in this space and want to think through any of this together, I would enjoy the conversation. Subscribe here and reach out at hi@prannoy.com.

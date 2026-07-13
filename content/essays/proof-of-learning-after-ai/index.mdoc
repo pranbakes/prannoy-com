@@ -1,0 +1,80 @@
+---
+title: Proof of Learning After AI
+date: 2026-06-25
+dek: "A follow-up to The Full Loop: which ways of measuring what a student knows still hold up now that AI broke the link between output and understanding."
+tags: []
+annotations: []
+---
+*Three ways to measure what a student actually knows, ranked by how much they prove*
+
+---
+
+In an AI product management course at NYU Stern, students turned in project analyses with clear arguments, reasonable trade-offs, and proper citations. Then the instructors, Panos Ipeirotis and Konstantinos Rizakos, called on them in class to walk through a single decision from their own work, and [many couldn't](https://arxiv.org/abs/2603.18221). The writing was strong. The understanding behind it often wasn't there.
+
+Assessment is built to measure what a person knows, by reading it off what they produce. AI broke the link between the two. A submitted essay used to be evidence of the mind that wrote it, and now it reveals almost nothing about whether the student can think.
+
+[The Full Loop](/essays/the-full-loop-from-learning-to-proof-of-capability) argued that the most promising learning companies are the ones that own the full loop: learning, assessment, and proof of capability. The hardest concepts, assessment and proof, called for further examination (no pun intended). Grading used to rest on a safe assumption, that a student's work was their own. That assumption is gone. This follow-up looks at what proof can still mean now, and which ways of measuring it actually hold up.
+
+## A learner's output stopped being evidence
+
+Assessment has always run on a quiet assumption: the work reflects the person. A good essay meant a mind that could build an argument. A correct proof meant someone who understood the math. A teacher graded the artifact because the artifact was evidence of the capability behind it.
+
+That inference is broken. A student can now produce a strong essay they could not have written alone, and the page offers no way to tell. Two students from the same HEPI survey cited in [The Full Loop](/essays/the-full-loop-from-learning-to-proof-of-capability) show what that does to grading. One used AI to draft faster and spent the time saved on deeper analysis. The other said they weren't using their brain at all. Their submitted work might be indistinguishable, yet one of them learned something and the other didn't, and the output can no longer tell them apart.
+
+The deeper problem is that the output can mislead the student too. In a randomized trial of nearly a thousand high school math students, [Bastani and colleagues](https://www.pnas.org/doi/10.1073/pnas.2422633122) gave one group a standard ChatGPT-style tutor during practice. Their scores jumped 48% while they had it. Then, the researchers took the AI away for the exam, and those same students scored 17% worse than peers who'd never had it. They had been using the tool as a crutch and the practice scores hid the fact that they were learning less, not more. A version of the tutor built to give hints instead of answers erased this effect, which is the encouraging half of the finding. The discouraging half is that the 'unguarded' version looked like it was working right up until the moment the support was removed.
+
+So the question every serious assessment now has to answer is what a learner can do without the machine, and whether that unaided ability is growing or quietly wasting away over time.
+
+> So the question every serious assessment now has to answer is what a learner can do without the machine, and whether that unaided ability is growing or quietly wasting away.
+
+Three methods, detailed below, are trying to rebuild something trustworthy in the form of assessment and proof of capability. I've ordered them from the one that proves the least to the one that proves the most. What has become clear: each approach is appropriate in specific circumstances, but not one is sufficient as a stand-alone.
+
+## Showing your work
+
+### Inspecting *how* the work was made *(the weakest evidence, the easiest to fake)*
+
+The first method gives up on the final artifact and looks at the path to it. It comes in two forms, an old one and a new one.
+
+The work trail is the old form: the drafts, the revisions, the order in which a document took shape. The premise is that a grader can watch thinking happen even without trusting the result, because a real process leaves a messy, recognizable trail and a pasted one doesn't. The "prompt trail" is the AI-native version of the same idea. Instead of the document's revision history, the grader reads the conversation that produced it, what the student asked, how they framed it, whether they caught a wrong answer and pushed back. There is true signal there. [Knoth and colleagues](https://www.sciencedirect.com/science/article/pii/S2666920X24000262) found that prompt quality reliably predicts output quality and behaves like a learnable skill. "Show your work" used to mean a student's revisions. It's increasingly starting to point to their prompts instead.
+
+Still, both forms fail in the same two ways. First, they're forgeable: a student can paste a finished answer and manufacture plausible drafts, and a model will generate a convincing revision history or a thoughtful-looking prompt log on request. Second, even when the trail is "real", it points two possible conclusions. Strong prompting *could* mean a student understands the domain well enough to interrogate it, or that they're simply skilled at extracting answers that they couldn't produce (or judge) on their own. Watching this process doesn't confirm anyone understood anything, which is the important thing to measure.
+
+Neither approach has been thoroughly productized, though that may be starting to change. The "work trail" still lives in education research as a strategy, not yet a product a teacher could adopt immediately. A [2025 review](https://link.springer.com/article/10.1186/s41239-025-00503-7) found the same gap for prompts: plenty of people argue prompt skill should be taught, and almost no one has worked out how to assess it, yet. The idea is proven in studies, but the assessment isn't built. The early exception is authorship tracking, tools like Grammarly Authorship and GPTZero's Replay that record how a document was built, typed, pasted, or generated, and the [market has noticed](https://www.businesswire.com/news/home/20260623083788/en/Superhuman-to-Acquire-GPTZero-AI-Authenticity-Platform): Superhuman just recently acquired GPTZero this June on the strength of that product offering.
+
+## Oral exams
+
+### Making a student defend the work out loud (strong evidence, hard to fake, barely productized)
+
+The second method is the oldest one there is, and it assuredly resists gaming. An examiner sits a student down and asks them to defend specific choices in their own work, live, with follow-up. Real-time reasoning about something a student doesn't understand is hard to fake, because the follow-up question goes exactly where the bluff is thinnest. Historically, this method, again, requireed a high level of investment. With the advantage of natural language processing (NLP) advancements, there is potentially a product area that could further automate this process.
+
+Ipeirotis and Rizakos automated this process. They built [Viva](https://arxiv.org/abs/2603.18221), a voice-AI oral exam that authenticates each student, walks them through their own project, and questions them on specific decisions, then grades the transcript with a panel of three models from different families (Claude, Gemini, and GPT-5) that score independently, read each other's reasoning, and revise. After that deliberation step the three agreed closely, a Krippendorff's alpha of 0.95 on the overall score in the second cohort. Grading ran under a dollar per exam inside their voice-platform subscription, cheap enough, the authors point out, to attach an oral check to every assignment rather than save it for finals. The feedback the system produced as a byproduct was unusually specific. For the highest-scoring student, it praised an understanding of "metric trade-offs and Goodhart's Law risks," noting how optimizing for one metric can corrupt another. An AI examiner, grading an undergraduate, landed on the exact argument I wrote about in [The Full Loop](/essays/the-full-loop-from-learning-to-proof-of-capability).
+
+This isn't just one professor's experiment. [Penn](https://fortune.com/2026/03/25/oral-exams-colleges-anti-ai-teaching-method-gen-z-stare/) describes a broad move back toward in-person assessment and now runs faculty workshops on oral exams. Cornell teaches an oral-defense method through its Center for Teaching Innovation, and an engineering professor at UC San Diego ran a three-year study on how to scale oral exams. The largest single piece of evidence comes from Australia, where a [2026 study in *Teaching in Higher Education*](https://doi.org/10.1080/13562517.2025.2549945) followed 290 students across 25 subjects and found interactive orals cut academic dishonesty while raising student confidence. The same instinct drives the return of the in-person blue book: take the AI out of the room and what's in the person's head becomes visible.
+
+The method works, but the 'product' around it doesn't exist yet. Viva broke in ways its authors document at length: the agent asked several questions at once and overwhelmed students, couldn't randomize which case study it pulled, and the cloned professorial voice came across as so harsh that one student wrote back a three-word review, "Make it less mean." Across the two cohorts, 70% and 66% of students agreed the exam tested their actual understanding, though the first cohort found it markedly more stressful than a written exam, easing only after the worst bugs were fixed between semesters. A nervous silence is not the same as not 'knowing', and whether an AI examiner can chase the one evasive answer worth pushing on, the way a sharp human would, is still unsettled. Every working version of this is a tool that one professor built for one course. There is no product (yet) to hand the next instructor who wants it.
+
+## Simulated work tasks
+
+### Watching a student do the real thing *(strongest evidence)*
+
+The third method stops looking for a proxy and watches the capability directly. Give someone a realistic version of the actual task and observe them do it, either in the moment, or over a period of time. There's no signal to interpret and no trail to forge, because the performance *is* the evidence. This approach is the hardest of the three to fake, because nothing stands between the question and the answer. It happens to be the most involved, but there are companies building efficiencies through their investments.
+
+[CodeSignal](https://codesignal.com/skills-validation/) sells exactly this for hiring. Its skills validation is built on real-world simulation rather than résumés or self-report, with each certified assessment backed by 2,800 hours of research, scoring models informed by more than 3 million skill-evaluation data points, and validation by industrial-organizational psychologists. The assessments are built to be defensible under employment law, which is its own kind of proof: a company will stake a hiring decision, and the legal exposure that comes with it, on the result.
+
+The detail that matters most here is how CodeSignal handles AI. An employer can configure how much a candidate is allowed to use, from none to full assistance, and the full-assistance mode exists because working well with AI is now a skill an employer might want to measure on purpose. The product treats aided and unaided performance as two separate things worth knowing and lets the employer pick which one the role calls for. The unaided-versus-aided question, turned into a setting.
+
+Not everyone agrees that AI configuration setting should exist. [HackerRank](https://www.hackerrank.com/writing/hackerrank-vs-codesignal-coding-assessment-platform-comparison), for example, has taken the opposite position. Its own developer survey reports that nearly all working developers now use AI tools and a large share of shipped code is AI-generated, so testing someone's unaided ability, it argues, is testing for a world that no longer exists. They further the perspective: measure people the way they actually work, AI included; otherwise, the measurement is a fiction.
+
+I lean the other way, hinged on the results from the Bastani study. The students who leaned on AI looked perfectly capable until the tool was removed, at which point the capability turned out not to be their 'own'. An aided score can't distinguish a person who knows the work from one who is borrowing it, and that difference is exactly what an employer, or a teacher, most needs to know. The disagreement is real and unsettled, but the unaided baseline is the only measure that survives once the tools are taken away.
+
+> ...the unaided baseline is the only measure that survives once the tools are taken away.
+
+This is the most built of the three because hiring is where an employer pays dearly for being wrong, and it's where [Stepful](https://www.stepful.com/) and [SuperHi](https://www.superhi.com/) (referenced in [The Full Loop](/essays/the-full-loop-from-learning-to-proof-of-capability)) were already heading: proof anchored to demonstrated work that holds up outside the platform. It is an off-the-shelf product, and it produces the strongest evidence of the three.
+
+## No single method is enough
+
+Line them up and none of the three wins outright. Showing your work, in either form, is forgeable and ambiguous about what it proves. Oral exams are strong, but exhausting to run and easy to fail for reasons that have nothing to do with knowledge. Even a work simulation, the strongest, only proves capability on the one task simulated, on the one day observed. Each measures something partial, and each can be fooled in a way the others aren't.
+
+So in a world where everyone has AI, no single test proves capability. Proof has to be triangulated. A work sample shows what someone can do alone, a live defense shows whether they understand what they produced, and measuring those things *over time* shows whether someone is improving or sliding into the crutch the Bastani students fell into, looking stronger each week while getting weaker underneath. Each of those can be gamed on its own, but gaming all three at once is difficult and, if done, likely proves sufficient capability in the first place!
+
+Whoever assembles that combined picture for learning, the way CodeSignal assembled it for one task in hiring, gets closest to real proof. The pieces exist, scattered across research papers, one-off classroom tools, and a handful of hiring products. Nobody has put them together for the learner. That, more than any single method, is the part of the 'full loop' still waiting to be built.

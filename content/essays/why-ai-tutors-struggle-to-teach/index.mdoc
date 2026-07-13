@@ -1,0 +1,66 @@
+---
+title: Why AI Struggles to Teach
+date: 2026-07-11
+dek: Good teaching often means withholding the answer. AI models are built to give it. Why most AI misses the thing that makes learning stick.
+tags:
+  - education
+  - technology
+annotations: []
+---
+*Effective teaching requires withholding answers, but AI models are designed to provide them.*
+
+---
+
+The better an AI tutor feels to use, the less it may be teaching. Good instruction runs on friction, on being made to struggle before being helped, and a model optimized to resolve a request on demand is optimized to remove exactly that.
+
+Most AI tutors imitate good teaching without reproducing it. ChatGPT's study mode and Google's Guided Learning hold back the answer to encourage effort, asking leading questions the way a patient tutor might. The scripting sits on top of a model built to give direct answers, and a student can reach that model with one more prompt. The imitation is often convincing, and it usually fails, for a reason that runs deeper than prompting.
+
+## The Necessity of Productive Failure
+
+Helpful AI models often contradict learning research. Manu Kapur's work on what he calls productive failure found that students who struggle with a problem *before* being taught how to solve it understand it better than students taught first. A [meta-analysis he ran with Tanmay Sinha](https://doi.org/10.3102/00346543211019105), covering 53 studies, put the effect at a Hedges' g of 0.36, a standard measure of how far two groups differ, rising to 0.58 when the approach was implemented faithfully. It's a small-to-moderate effect, and a consistent one. Failing first beats being shown the method up front.
+
+Productive failure follows a specific sequence: students attempt a difficult problem, usually fail, and then receive expert instruction that connects their attempts to the correct method. Without that follow-up, students simply flounder.
+
+In one experiment, ninth-graders tried to invent a measure of consistency before they had been taught standard deviation. They tried the range, they tried summing the year-on-year differences, they argued about which of their homemade measures was fairer, and they mostly failed. The teacher then took those failed inventions and used them to build the actual concept of standard deviation. These students understood variance *better* than students taught the formula directly, and they did it despite the direct-instruction group getting more practice problems and homework.
+
+> The failure wasn't wasted time. It was what made the instruction stick.
+
+Both struggle and instruction are essential. Without the struggle, the effect vanishes. Without the instruction, what's left is discovery learning, which the same research finds underperforms.
+
+## Surface-Level Pedagogy
+
+The tools most students actually reach for do the opposite of what the research prescribes. A general assistant like ChatGPT resolves the request in front of it, and a mode that withholds is layered on afterward. Its old "study mode" scaffolds from the first message, breaking the problem into steps and offering hints that lead the student toward the answer, which is closer to the guided conditions Kapur's studies used as comparisons, the ones that lose to letting students fail first. By softening the struggle, it removes the exact conditions that produce deep learning.
+
+A better prompt won't fix it, because the problem sits *below* the prompts. Base models are trained to satisfy the person using them, to be helpful, to resolve the request. Study mode is a set of instructions layered on top, telling that model to stop being helpful in one specific way, and instructions that fight the training beneath them leak. When OpenAI quietly pulled study mode in 2026, it took no retraining and no engineering, just deleting the instructions, which is the clearest proof that the pedagogy was never part of the machine in the first place.
+
+> Deleting study mode took no retraining and no engineering. The pedagogy was never part of the machine.
+
+## The Illusion of Learning
+
+Over-helping causes measurable damage, and it hides itself. In a field experiment with 994 students, [Bastani and colleagues](https://www.pnas.org/doi/10.1073/pnas.2422633122) gave one group a standard GPT-4 tutor and watched their practice scores climb 48%. Then they tested everyone without the AI, and the students who had used it scored 17% worse than the ones who never had it. The tutor had propped up their performance and left nothing behind, a crutch that vanished when the exam started.
+
+Those students also misread themselves. The ones who used the plain tutor did worse on the final test and had no idea, they thought they had done fine. Another group that used a hint-giving tutor version did no better than students with no AI at all, yet came away convinced they had done better. The students who learned the *least* were the most convinced they had learned, and that broken self-assessment is the one signal a self-directed learner most needs intact.
+
+> The students who learned the least were the most convinced they had learned.
+
+[Fan and colleagues](https://doi.org/10.1111/bjet.13544), writing in the British Journal of Educational Technology, call this metacognitive laziness: learners offload the monitoring to the tool, the stopping and checking that builds durable understanding, and it never fires. The student mistakes the tool's competence for their own. A tutor built to resolve confusion as fast as possible is, by design, removing the exact signal that struggle is supposed to produce.
+
+## Diagnosis vs. Response
+
+Formative assessment requires adapting instruction based on evidence. Dylan Wiliam's definition is precise: assessment is formative only when the evidence gathered actually changes what happens next. Not the quiz, the adaptation. [Black and Wiliam's original work](https://doi.org/10.1177/003172171009200119) found formative practice produced effect sizes between 0.4 and 0.7, with the largest gains for the lowest-attaining students, the ones who most need a teacher to notice a gap they can't yet name.
+
+A teacher might ask the class to simplify 3/6 and see a third of them write 3/6 equals 0.36. Nobody asked a question. The teacher went looking, found a misconception those students didn't know they held, and stopped to fix it before moving on. A tutor almost never makes that move, because it answers the question in front of it and doesn't go hunting for the one the student should have asked. The student who types "is 3/6 equal to 0.36" gets corrected. The student who never doubts it, and never asks, gets nothing from it.
+
+## The Tutors That Get It Right Are Narrow
+
+Some tutors do withhold, and it's worth seeing what they have in common. Khan Academy's Khanmigo refuses to hand over answers as a matter of design. Ask it to solve an equation and it asks what the first step should be, and reviewers find students who use it understand concepts better than students who get answers from a general chatbot. Ello, a reading tutor for young children, prompts a child to attempt a hard word and only reads it aloud on the third try, calibrated to withhold without pushing the child to tears. Synthesis, a K-5 math tutor, asks students to talk through their reasoning rather than just checking whether the answer is right.
+
+Three things connect them. Each is narrow, one subject or one age band, and not a general assistant. Each is purpose-built around a pedagogical model rather than a chat window with instructions bolted on, and the two that avoid a general language model, Ello and Synthesis, also avoid the arithmetic slips that Khanmigo, running on GPT-4, still makes. And each is sold to a parent, a school, or a district, never directly to the student alone. Even Khanmigo, the most successful of them, shows the limit of the approach. Its Socratic design only holds when students are genuinely trying. Teachers who don't explain up front why the tutor refuses to give answers find that students route around it, treating it as a shortcut the moment the struggle stops feeling worth it. The withholding is real, and it still leaks, because it sits on a model trained to help and a student who can always ask elsewhere.
+
+## The Incentive Problem
+
+Fixing this runs deeper than any instruction. The withholding has to be trained into the model rather than bolted on top of it, and nobody has shown that works, yet. Harder still, the student has to be unable to skip the struggle, because a struggle a student can abandon the moment it gets uncomfortable isn't one.
+
+Both of those requirements run straight into the incentives of a consumer product. A tool measured on whether users come back can't *choose* to frustrate the people paying for it. Making someone sit in confusion, refusing the answer they're demanding, withholding until they've done the hard part, that is a worse product experience by every metric a consumer app optimizes for, and a better one by the only metric that matters for learning.
+
+This is why the best AI tutor and the best-selling one may not be the same product. The tutor that actually teaches will feel worse to use, at least in the moment, and the person choosing whether to keep using it is usually the student, not the teacher who knows better. That is the thread connecting the promise of Khanmigo, Ello, and Synthesis: none of them answers to the learner alone. Their buyers also *want* the struggle, because the learner rarely does.
