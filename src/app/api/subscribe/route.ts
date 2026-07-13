@@ -42,14 +42,17 @@ export async function POST(request: Request) {
       Authorization: `Token ${apiKey}`,
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({ email }),
+    body: JSON.stringify({ email_address: email }),
   });
 
   if (res.ok) {
     return Response.json({ ok: true });
   }
 
-  if (res.status === 400) {
+  // Buttondown uses 400 for some validation errors and 422 for others
+  // (e.g. duplicate subscriber vs. malformed field) — treat both as
+  // "the request itself was rejected" rather than a server-side failure.
+  if (res.status === 400 || res.status === 422) {
     const data = await res.json().catch(() => null);
     const message = extractButtondownError(data);
     if (message?.toLowerCase().includes("already")) {
@@ -58,6 +61,7 @@ export async function POST(request: Request) {
         { status: 409 }
       );
     }
+    console.error("Buttondown rejected the request", res.status, data);
     return Response.json(
       { ok: false, error: message ?? "That email didn't go through." },
       { status: 400 }
@@ -78,7 +82,14 @@ function extractButtondownError(data: unknown): string | null {
   if (!data || typeof data !== "object") return null;
   for (const value of Object.values(data as Record<string, unknown>)) {
     if (typeof value === "string") return value;
-    if (Array.isArray(value) && typeof value[0] === "string") return value[0];
+    if (Array.isArray(value)) {
+      const [first] = value;
+      if (typeof first === "string") return first;
+      if (first && typeof first === "object" && "detail" in first) {
+        const detail = (first as { detail: unknown }).detail;
+        if (typeof detail === "string") return detail;
+      }
+    }
   }
   return null;
 }
