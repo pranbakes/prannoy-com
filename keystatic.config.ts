@@ -1,4 +1,4 @@
-import { config, fields, collection } from "@keystatic/core";
+import { config, fields, collection, singleton } from "@keystatic/core";
 
 const tags = () =>
   fields.array(fields.text({ label: "Tag" }), {
@@ -31,8 +31,39 @@ export default config({
     navigation: {
       Writing: ["essays", "poems"],
       Board: ["corkboard"],
-      Site: ["projects"],
+      Site: ["projects", "about"],
     },
+  },
+  singletons: {
+    about: singleton({
+      label: "About",
+      path: "content/about/",
+      schema: {
+        portrait: fields.image({
+          label: "Portrait",
+          description: "Tilted like a corkboard pin. Optional — a placeholder shows if left empty.",
+          directory: "public/images/about",
+          publicPath: "/images/about/",
+          validation: { isRequired: false },
+        }),
+        bio: fields.document({
+          label: "Bio",
+          description: "The main paragraphs. One voice holding every identity together — not one paragraph per hat.",
+          formatting: { inlineMarks: true },
+        }),
+        workingTogether: fields.document({
+          label: "Working together",
+          description: 'The advisory/investing pitch. Include a "write to me" mailto link inline.',
+          formatting: { inlineMarks: true },
+          links: true,
+        }),
+        forEditors: fields.text({
+          label: "For editors",
+          description: "Third-person bio, meant to be copied for submissions. Keep it plain — no rich formatting.",
+          multiline: true,
+        }),
+      },
+    }),
   },
   collections: {
     essays: collection({
