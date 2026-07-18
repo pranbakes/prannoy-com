@@ -36,17 +36,13 @@ export default async function AboutPage() {
 
       <div className="mt-8 flex flex-col gap-8 sm:flex-row">
         <div className="-rotate-2 self-start bg-card p-2 shadow-sm">
-          {about?.portrait ? (
-            <Image
-              src={about.portrait}
-              alt="Prannoy Nambiar"
-              width={128}
-              height={160}
-              className="h-40 w-32 object-cover"
-            />
-          ) : (
-            <div className="h-40 w-32 bg-paper-dark" />
-          )}
+          <Image
+            src={about?.portrait ?? "/prannoy.png"}
+            alt="Prannoy Nambiar"
+            width={480}
+            height={720}
+            className="h-40 w-32 object-cover object-top"
+          />
         </div>
 
         <div className="max-w-[520px] space-y-6 font-serif text-essay-body leading-relaxed">
