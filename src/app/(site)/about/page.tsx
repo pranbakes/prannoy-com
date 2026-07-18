@@ -2,6 +2,22 @@ import Image from "next/image";
 import type { Metadata } from "next";
 import { DocumentRenderer } from "@keystatic/core/renderer";
 import { reader } from "@/lib/reader";
+import { ADVISORY_MAILTO } from "@/lib/mailto";
+
+// The "Working together" copy is authored in Keystatic as a plain
+// mailto: link (simple for a non-technical editor to write). This
+// swaps in the full subject/body-prefilled version at render time,
+// so ADVISORY_MAILTO stays the single source of truth instead of a
+// giant encoded string getting pasted into CMS content.
+const workingTogetherRenderers = {
+  inline: {
+    link: ({ children, href }: { children: React.ReactNode; href: string }) => (
+      <a href={href === "mailto:hi@prannoy.com" ? ADVISORY_MAILTO : href}>
+        {children}
+      </a>
+    ),
+  },
+};
 
 export async function generateMetadata(): Promise<Metadata> {
   const about = await reader.singletons.about.read();
@@ -44,7 +60,10 @@ export default async function AboutPage() {
             Working together
           </h2>
           <div className="mt-3 font-serif text-essay-body leading-relaxed [&_a]:text-pen [&_a]:underline [&_a]:underline-offset-4 [&_a:hover]:text-ink">
-            <DocumentRenderer document={about.workingTogether} />
+            <DocumentRenderer
+              document={about.workingTogether}
+              renderers={workingTogetherRenderers}
+            />
           </div>
         </div>
       )}

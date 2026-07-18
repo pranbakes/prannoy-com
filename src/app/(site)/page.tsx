@@ -2,6 +2,7 @@ import Link from "next/link";
 import { reader } from "@/lib/reader";
 import { Circle } from "@/components/red-pen";
 import NewsletterSignup from "@/components/newsletter-signup";
+import { ADVISORY_MAILTO } from "@/lib/mailto";
 
 export default async function Home() {
   const [essays, pins] = await Promise.all([
@@ -86,7 +87,7 @@ export default async function Home() {
             I take on a small number of advisory relationships and invest
             early. If you&apos;re building in education,{" "}
             <a
-              href="mailto:hi@prannoy.com"
+              href={ADVISORY_MAILTO}
               className="text-pen underline underline-offset-4 hover:text-ink"
             >
               write to me
