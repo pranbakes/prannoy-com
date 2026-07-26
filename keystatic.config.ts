@@ -31,10 +31,36 @@ export default config({
     navigation: {
       Writing: ["essays", "poems"],
       Board: ["corkboard"],
-      Site: ["projects", "about"],
+      Site: ["projects", "about", "home"],
     },
   },
   singletons: {
+    home: singleton({
+      label: "Home",
+      path: "content/home/",
+      schema: {
+        greeting: fields.text({
+          label: "Greeting (h1)",
+          description: 'The hero line, e.g. "Hi, glad you\'re here."',
+        }),
+        circledWord: fields.text({
+          label: "Circled word",
+          description:
+            'Must be an exact substring of the greeting above — that word gets the hand-drawn red circle. Keep it short (one word); long words distort the shape.',
+        }),
+        tagline: fields.text({
+          label: "Tagline",
+          description: "The paragraph beneath the greeting, inside the same dark section.",
+          multiline: true,
+        }),
+        advisoryLine: fields.document({
+          label: "Advisory line",
+          description: 'Shown above the newsletter signup. Include a "write to me" mailto link inline.',
+          formatting: { inlineMarks: true },
+          links: true,
+        }),
+      },
+    }),
     about: singleton({
       label: "About",
       path: "content/about/",

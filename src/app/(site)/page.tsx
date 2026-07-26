@@ -3,11 +3,40 @@ import { reader } from "@/lib/reader";
 import { Circle } from "@/components/red-pen";
 import NewsletterSignup from "@/components/newsletter-signup";
 import { ADVISORY_MAILTO } from "@/lib/mailto";
+import { DocumentRenderer } from "@keystatic/core/renderer";
+
+// The advisory line is authored in Keystatic as a plain mailto: link
+// (simple for a non-technical editor to write). This swaps in the full
+// subject/body-prefilled version at render time, so ADVISORY_MAILTO
+// stays the single source of truth instead of a giant encoded string
+// getting pasted into CMS content.
+const advisoryLineRenderers = {
+  inline: {
+    link: ({ children, href }: { children: React.ReactNode; href: string }) => (
+      <a href={href === "mailto:hi@prannoy.com" ? ADVISORY_MAILTO : href}>
+        {children}
+      </a>
+    ),
+  },
+};
+
+function renderGreeting(greeting: string, circledWord: string) {
+  const idx = circledWord ? greeting.indexOf(circledWord) : -1;
+  if (idx === -1) return greeting;
+  return (
+    <>
+      {greeting.slice(0, idx)}
+      <Circle>{circledWord}</Circle>
+      {greeting.slice(idx + circledWord.length)}
+    </>
+  );
+}
 
 export default async function Home() {
-  const [essays, pins] = await Promise.all([
+  const [essays, pins, home] = await Promise.all([
     reader.collections.essays.all(),
     reader.collections.corkboard.all(),
+    reader.singletons.home.read({ resolveLinkedFiles: true }),
   ]);
 
   const recentEssays = [...essays]
@@ -23,14 +52,15 @@ export default async function Home() {
       <section className="bg-board py-24 text-paper">
         <div className="mx-auto max-w-4xl px-6">
           <h1 className="font-serif text-hero font-medium">
-            Hi, glad you&apos;re <Circle>here</Circle>.
+            {home
+              ? renderGreeting(home.greeting, home.circledWord)
+              : "Hi, glad you're here."}
           </h1>
-          <p className="mt-6 max-w-[60ch] font-sans text-sm leading-relaxed text-muted-board">
-            Essays on education, philosophy, work, and play. Poems for
-            everything else. Companies I&apos;ve built, and founders
-            I&apos;ve backed building theirs. It all lives in one place
-            because keeping it apart never told the truth about any of it.
-          </p>
+          {home?.tagline && (
+            <p className="mt-6 max-w-[60ch] font-sans text-sm leading-relaxed text-muted-board">
+              {home.tagline}
+            </p>
+          )}
         </div>
       </section>
 
@@ -83,17 +113,14 @@ export default async function Home() {
 
       <section className="bg-paper py-16">
         <div className="mx-auto max-w-4xl px-6">
-          <p className="mb-8 font-serif text-essay-body leading-relaxed text-muted">
-            I take on a small number of advisory relationships and invest
-            early. If you&apos;re building in education,{" "}
-            <a
-              href={ADVISORY_MAILTO}
-              className="text-pen underline underline-offset-4 hover:text-ink"
-            >
-              write to me
-            </a>
-            .
-          </p>
+          {home?.advisoryLine && (
+            <div className="mb-8 font-serif text-essay-body leading-relaxed text-muted [&_a]:text-pen [&_a]:underline [&_a]:underline-offset-4 [&_a:hover]:text-ink">
+              <DocumentRenderer
+                document={home.advisoryLine}
+                renderers={advisoryLineRenderers}
+              />
+            </div>
+          )}
           <NewsletterSignup />
         </div>
       </section>
