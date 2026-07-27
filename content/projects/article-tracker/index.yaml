@@ -1,0 +1,9 @@
+title: Article Tracker
+description: >-
+  A Chrome extension that tracks what I actually read versus what I open
+  and abandon, then uses OpenAI to pull out the useful bits: author,
+  credibility, bias, a summary, and related pieces worth reading next.
+status: in-progress
+tags: []
+stack: []
+url: https://github.com/pranbakes/ArticleTracker
