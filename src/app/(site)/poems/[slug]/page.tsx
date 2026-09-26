@@ -31,7 +31,7 @@ export default async function PoemPage({
 
       <div className="mt-10 font-serif text-[18px] leading-relaxed sm:text-poem-body">
         {lines.map((line, i) => (
-          <div key={i} className="pl-4 indent-[-1em]">
+          <div key={i} className="whitespace-pre-wrap pl-4 indent-[-1em]">
             {line || " "}
           </div>
         ))}
