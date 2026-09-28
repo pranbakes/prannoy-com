@@ -149,18 +149,21 @@ export default config({
     poems: collection({
       label: "Poems",
       slugField: "title",
-      path: "content/poems/*",
-      format: "yaml",
+      path: "content/poems/*/",
+      format: { contentField: "body" },
       columns: ["title", "date"],
       schema: {
         title: fields.slug({ name: { label: "Title" } }),
         date: fields.date({ label: "Date", defaultValue: { kind: "today" }, validation: { isRequired: true } }),
         tags: tags(),
-        body: fields.text({
+        body: fields.document({
           label: "Body",
           description:
-            "Plain text. Line breaks are authorial and preserved exactly as typed.",
-          multiline: true,
+            "Each stanza is its own paragraph (Enter between stanzas). Within a stanza, use Shift+Enter for line breaks — those are authorial and preserved exactly, including leading spaces. Bold/italic are the only formatting available; kept deliberately plain otherwise.",
+          formatting: {
+            inlineMarks: { bold: true, italic: true },
+            softBreaks: true,
+          },
         }),
         provenance: fields.object(
           {
