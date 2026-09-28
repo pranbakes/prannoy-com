@@ -30,7 +30,10 @@ export default async function PoemsIndex({
       <TagFilterRow tags={tags} basePath="/poems" activeTag={tag} />
       <ul className="mt-8 divide-y divide-dashed divide-rule">
         {filtered.map(({ slug, entry }) => (
-          <li key={slug} className="flex items-baseline justify-between py-3">
+          <li
+            key={slug}
+            className="flex items-baseline justify-between gap-x-3 py-3"
+          >
             <Link
               href={`/poems/${slug}`}
               className="font-serif text-[20px] font-medium"
