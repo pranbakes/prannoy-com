@@ -18,7 +18,7 @@ export default function Nav() {
         <ul className="flex flex-wrap gap-x-4 gap-y-1 font-sans text-sm sm:gap-6">
           {links.map((link) => (
             <li key={link.href}>
-              <Link href={link.href} className="hover:text-pen">
+              <Link href={link.href} className="hover:text-pen-board">
                 {link.label}
               </Link>
             </li>
