@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@import "./essay-prose.css";
 
 @theme {
   --color-board: #1e2b24;

@@ -1,0 +1,188 @@
+/* Essay typography.
+ *
+ * Everything that styles essay body copy lives in this file. The essay
+ * route carries three semantic classes and no typography utilities.
+ *
+ * The markup it styles (src/app/(site)/essays/[slug]/page.tsx):
+ *
+ *   .essay-prose            the block flow — one child per Keystatic block
+ *     .essay-row            grid: copy column + annotation gutter
+ *       .essay-copy         the rendered block
+ *       aside               the margin note, styled in the route
+ *
+ * Vertical rhythm sits on .essay-row rather than on p/h2/blockquote. Each
+ * .essay-copy is a grid item, so it opens a new formatting context and
+ * margins on the blocks inside it cannot collapse between rows — they add
+ * up instead (a 1.2em paragraph margin under a 2.5em heading margin would
+ * give 3.7em). Spacing the rows avoids that arithmetic and keeps every
+ * margin note level with the first line of the block it annotates.
+ *
+ * In @layer components so these rules outrank Preflight while any Tailwind
+ * utility added later still wins.
+ */
+
+@layer components {
+  .essay-prose {
+    /* One knob. The rhythm and the heading spacing below are all multiples
+     * of the body size, so they stay in proportion at both breakpoints.
+     *
+     * They have to be derived this way rather than written as em: these
+     * margins sit on .essay-row, which inherits the 1rem sans body font,
+     * so an em there would measure the wrong text. */
+    --essay-body-size: 1.125rem;
+    --essay-rhythm: calc(var(--essay-body-size) * 1.2);
+
+    /* 65ch of EB Garamond, whose ch measures 0.48em, at the 1.25rem
+     * desktop body size. */
+    --essay-measure: 39rem;
+    --essay-gutter: 9.375rem;
+  }
+
+  @media (min-width: 40rem) {
+    .essay-prose {
+      --essay-body-size: 1.25rem;
+    }
+  }
+
+  /* --- rhythm between blocks ------------------------------------------ */
+
+  .essay-prose > * + * {
+    margin-top: var(--essay-rhythm);
+  }
+
+  /* Headings attach to the section they introduce: more air above than
+   * below. :has() carries the specificity of its argument, so these
+   * outrank the rule above regardless of source order. */
+  .essay-prose > *:has(h2) {
+    margin-top: calc(var(--essay-body-size) * 2.5);
+  }
+
+  .essay-prose > *:has(h2) + * {
+    margin-top: calc(var(--essay-body-size) * 0.6);
+  }
+
+  .essay-prose > *:has(h3) {
+    margin-top: calc(var(--essay-body-size) * 1.9);
+  }
+
+  .essay-prose > *:has(h3) + * {
+    margin-top: calc(var(--essay-body-size) * 0.5);
+  }
+
+  /* "The Full Loop" puts a divider before every h2. The rule already
+   * separates the sections, so the heading does not need its full run-up
+   * on top of it. */
+  .essay-prose > *:has(hr) + *:has(:is(h2, h3)) {
+    margin-top: var(--essay-rhythm);
+  }
+
+  .essay-prose > *:first-child {
+    margin-top: 0;
+  }
+
+  /* --- the row ---------------------------------------------------------- */
+
+  .essay-row {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
+  }
+
+  @media (min-width: 48rem) {
+    .essay-row {
+      grid-template-columns: minmax(0, var(--essay-measure)) var(--essay-gutter);
+      gap: 2rem;
+    }
+  }
+
+  /* --- the copy --------------------------------------------------------- */
+
+  .essay-copy {
+    max-width: var(--essay-measure);
+    font-family: var(--font-serif);
+    font-size: var(--essay-body-size);
+    line-height: 1.65;
+  }
+
+  .essay-copy p {
+    text-wrap: pretty;
+  }
+
+  .essay-copy :is(h2, h3) {
+    font-weight: 500;
+    line-height: 1.25;
+    text-wrap: balance;
+  }
+
+  .essay-copy h2 {
+    font-size: 1.45em;
+  }
+
+  .essay-copy h3 {
+    font-size: 1.15em;
+  }
+
+  /* Headings are often bolded in the editor. EB Garamond loads at 400 and
+   * 500 only, so letting strong through would synthesise a faux bold. */
+  .essay-copy :is(h2, h3) strong {
+    font-weight: inherit;
+  }
+
+  .essay-copy :is(ol, ul) {
+    padding-inline-start: 1.4em;
+  }
+
+  .essay-copy ol {
+    list-style: decimal;
+  }
+
+  .essay-copy ul {
+    list-style: disc;
+  }
+
+  .essay-copy li + li {
+    margin-top: 0.4em;
+  }
+
+  .essay-copy li::marker {
+    color: var(--color-muted);
+  }
+
+  .essay-copy blockquote {
+    background: var(--color-paper-dark);
+    padding: 1em 1.25em;
+    font-style: normal;
+  }
+
+  .essay-copy hr {
+    border: 0;
+    border-top: 1px solid var(--color-rule);
+    margin-block: 0.4em;
+  }
+
+  .essay-copy a {
+    color: var(--color-pen);
+    text-decoration: underline;
+    text-decoration-thickness: 0.05em;
+    text-underline-offset: 0.18em;
+  }
+
+  /* The essays document field has no image block today, so nothing here
+   * renders a figure yet. These keep one on the same rhythm if the schema
+   * ever gains them. */
+  .essay-copy :is(img, figure) {
+    display: block;
+    max-width: 100%;
+    height: auto;
+  }
+
+  .essay-copy figure > * + * {
+    margin-top: 0.5em;
+  }
+
+  .essay-copy figcaption {
+    font-size: 0.8em;
+    line-height: 1.5;
+    color: var(--color-muted);
+  }
+}

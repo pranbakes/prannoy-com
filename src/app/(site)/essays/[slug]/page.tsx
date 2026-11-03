@@ -20,9 +20,6 @@ export async function generateMetadata({
   };
 }
 
-const bodyProseClasses =
-  "font-serif text-essay-body leading-relaxed [&_blockquote]:my-6 [&_blockquote]:bg-paper-dark [&_blockquote]:p-4 [&_blockquote]:not-italic [&_a]:text-pen [&_a]:underline";
-
 export default async function EssayPage({
   params,
 }: {
@@ -49,7 +46,7 @@ export default async function EssayPage({
         </p>
       </header>
 
-      <div className="mt-10">
+      <div className="essay-prose mt-10">
         {body.map((block, i) => {
           const blockNotes = notes.filter((note) =>
             blockHasAnchor(block, note.anchorId)
@@ -85,8 +82,8 @@ function BodyRow({
   seeAlso?: boolean;
 }) {
   return (
-    <div className="grid grid-cols-1 gap-2 md:grid-cols-[440px_150px] md:gap-8">
-      <div className={bodyProseClasses}>{children}</div>
+    <div className="essay-row">
+      <div className="essay-copy">{children}</div>
       {notes.length > 0 && (
         <aside className="space-y-2 font-hand text-pen md:border-l md:border-dashed md:border-rule md:pl-4">
           {notes.map((note, i) => (
