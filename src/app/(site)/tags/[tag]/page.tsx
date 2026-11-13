@@ -19,10 +19,9 @@ export default async function TagPage({
 }) {
   const { tag } = await params;
 
-  const [essays, poems, pins, projects] = await Promise.all([
+  const [essays, poems, projects] = await Promise.all([
     reader.collections.essays.all(),
     reader.collections.poems.all(),
-    reader.collections.corkboard.all(),
     reader.collections.projects.all(),
   ]);
 
@@ -34,10 +33,6 @@ export default async function TagPage({
     poems.map((e) => ({ ...e, tags: e.entry.tags })),
     tag
   );
-  const matchingPins = filterByTag(
-    pins.map((e) => ({ ...e, tags: e.entry.tags })),
-    tag
-  );
   const matchingProjects = filterByTag(
     projects.map((e) => ({ ...e, tags: e.entry.tags })),
     tag
@@ -46,7 +41,6 @@ export default async function TagPage({
   const nothingFound =
     matchingEssays.length === 0 &&
     matchingPoems.length === 0 &&
-    matchingPins.length === 0 &&
     matchingProjects.length === 0;
 
   return (
@@ -84,21 +78,6 @@ export default async function TagPage({
                   className="font-serif text-list-title"
                 >
                   {entry.title}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </section>
-      )}
-
-      {matchingPins.length > 0 && (
-        <section className="mt-10">
-          <h2 className="font-hand text-lg text-pen">corkboard</h2>
-          <ul className="mt-2 divide-y divide-dashed divide-rule">
-            {matchingPins.map(({ slug, entry }) => (
-              <li key={slug} className="py-3">
-                <Link href="/corkboard" className="text-sm text-muted">
-                  {entry.comment}
                 </Link>
               </li>
             ))}

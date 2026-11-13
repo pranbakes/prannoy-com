@@ -5,17 +5,15 @@ import { uniqueTags } from "@/lib/tags";
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://prannoy.com";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const [essays, poems, pins, projects] = await Promise.all([
+  const [essays, poems, projects] = await Promise.all([
     reader.collections.essays.all(),
     reader.collections.poems.all(),
-    reader.collections.corkboard.all(),
     reader.collections.projects.all(),
   ]);
 
   const tags = uniqueTags([
     ...essays.map((e) => e.entry),
     ...poems.map((e) => e.entry),
-    ...pins.map((e) => e.entry),
     ...projects.map((e) => e.entry),
   ]);
 

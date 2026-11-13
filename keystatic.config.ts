@@ -30,7 +30,6 @@ export default config({
   ui: {
     navigation: {
       Writing: ["essays", "poems"],
-      Board: ["corkboard"],
       Site: ["projects", "about", "home"],
     },
   },
@@ -61,7 +60,7 @@ export default config({
       schema: {
         portrait: fields.image({
           label: "Portrait",
-          description: "Tilted like a corkboard pin. Optional — a placeholder shows if left empty.",
+          description: "Tilted slightly. Optional; a placeholder shows if left empty.",
           directory: "public/images/about",
           publicPath: "/images/about/",
           validation: { isRequired: false },
@@ -176,57 +175,6 @@ export default config({
             description: "Optional. Leave journal blank to omit.",
           }
         ),
-      },
-    }),
-    corkboard: collection({
-      label: "Corkboard",
-      slugField: "slug",
-      path: "content/corkboard/*/",
-      columns: ["date", "attribution"],
-      schema: {
-        slug: fields.slug({ name: { label: "Slug" } }),
-        date: fields.date({ label: "Date", defaultValue: { kind: "today" }, validation: { isRequired: true } }),
-        tags: tags(),
-        content: fields.conditional(
-          fields.select({
-            label: "Type",
-            options: [
-              { label: "Quote", value: "quote" },
-              { label: "Image", value: "image" },
-              { label: "Video", value: "video" },
-              { label: "Music", value: "music" },
-            ],
-            defaultValue: "quote",
-          }),
-          {
-            quote: fields.text({ label: "Quote text", multiline: true }),
-            image: fields.image({
-              label: "Image",
-              directory: "public/images/corkboard",
-              publicPath: "/images/corkboard/",
-              validation: { isRequired: true },
-            }),
-            video: fields.url({
-              label: "Video URL",
-              validation: { isRequired: true },
-            }),
-            music: fields.url({
-              label: "Spotify embed URL",
-              validation: { isRequired: true },
-            }),
-          }
-        ),
-        attribution: fields.text({
-          label: "Attribution",
-          description: "Who made it.",
-        }),
-        comment: fields.text({
-          label: "Comment",
-          description:
-            "Required on every pin. You cannot pin something you haven't formed a thought about.",
-          multiline: true,
-          validation: { isRequired: true },
-        }),
       },
     }),
     projects: collection({

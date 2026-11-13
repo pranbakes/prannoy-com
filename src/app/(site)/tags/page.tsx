@@ -8,17 +8,15 @@ export const metadata: Metadata = {
 };
 
 export default async function TagsIndex() {
-  const [essays, poems, pins, projects] = await Promise.all([
+  const [essays, poems, projects] = await Promise.all([
     reader.collections.essays.all(),
     reader.collections.poems.all(),
-    reader.collections.corkboard.all(),
     reader.collections.projects.all(),
   ]);
 
   const counts = collectTagCounts([
     essays.map((e) => e.entry),
     poems.map((e) => e.entry),
-    pins.map((e) => e.entry),
     projects.map((e) => e.entry),
   ]);
 

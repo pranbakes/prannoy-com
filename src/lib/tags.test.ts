@@ -10,13 +10,9 @@ const poems = [
   { slug: "poem-a", tags: ["pedagogy"] },
   { slug: "poem-b", tags: [] },
 ];
-const corkboard = [
-  { slug: "pin-a", tags: ["pedagogy", "assessment"] },
-  { slug: "pin-b", tags: ["design"] },
-];
 const projects = [{ slug: "proj-a", tags: ["ai"] }];
 
-test("filterByTag finds the tagged essay, poem, and corkboard pin", () => {
+test("filterByTag finds the tagged essay and poem", () => {
   assert.deepEqual(
     filterByTag(essays, "pedagogy").map((e) => e.slug),
     ["essay-a"]
@@ -26,8 +22,8 @@ test("filterByTag finds the tagged essay, poem, and corkboard pin", () => {
     ["poem-a"]
   );
   assert.deepEqual(
-    filterByTag(corkboard, "pedagogy").map((e) => e.slug),
-    ["pin-a"]
+    filterByTag(projects, "ai").map((e) => e.slug),
+    ["proj-a"]
   );
 });
 
@@ -35,11 +31,11 @@ test("filterByTag returns nothing for an unused tag", () => {
   assert.deepEqual(filterByTag(essays, "nonexistent"), []);
 });
 
-test("collectTagCounts aggregates counts across all four collections", () => {
-  const counts = collectTagCounts([essays, poems, corkboard, projects]);
-  assert.equal(counts.get("pedagogy"), 3);
+test("collectTagCounts aggregates counts across all three collections", () => {
+  const counts = collectTagCounts([essays, poems, projects]);
+  assert.equal(counts.get("pedagogy"), 2);
   assert.equal(counts.get("ai"), 2);
-  assert.equal(counts.get("design"), 1);
+  assert.equal(counts.get("poetry"), 1);
   assert.equal(counts.has("nonexistent"), false);
 });
 
