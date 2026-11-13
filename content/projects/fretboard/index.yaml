@@ -1,8 +1,8 @@
 title: Fretlore
 description: >-
-  A music theory tool for guitar: play a chord and Fretlore names it, then
-  suggests what to play next. I built it out of my own struggle to actually
-  learn the guitar rather than just own one.
+  A music theory tool for guitar. Play a chord and Fretlore names it, then
+  suggests where to go next. I built it out of my own struggle to learn the
+  guitar rather than just own one.
 status: live
 tags: []
 stack: []

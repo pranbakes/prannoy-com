@@ -43,8 +43,8 @@ export default function NewsletterSignup() {
     <>
       <p className="font-serif text-list-title font-medium">The Full Loop</p>
       <p className="mt-1 max-w-[60ch] text-sm text-muted">
-        One email a month on whether AI is teaching anyone, for people who
-        build learning products.
+        One email a month on building things people learn from, and how we
+        would know if they worked.
       </p>
     </>
   );

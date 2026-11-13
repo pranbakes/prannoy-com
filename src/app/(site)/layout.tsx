@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import SiteChrome from "@/components/site-chrome";
 
 const description =
-  "A former math teacher, now shaping an AI tutor, writes about whether AI can actually teach. Plus poems.";
+  "Prannoy Nambiar builds platforms where people learn and earn, writes essays on whether they work, and publishes poems.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(

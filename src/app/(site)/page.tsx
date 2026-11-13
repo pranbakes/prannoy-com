@@ -38,7 +38,7 @@ export default async function Home() {
           <h1 className="font-serif text-hero font-medium">
             {home
               ? renderGreeting(home.greeting, home.circledWord)
-              : "Can AI actually teach?"}
+              : "Every job I've had has been a version of teaching 7th grade math."}
           </h1>
           {home?.tagline && (
             <p className="mt-6 max-w-[60ch] font-sans text-sm leading-relaxed text-muted-board">
@@ -50,7 +50,7 @@ export default async function Home() {
 
       <section className="bg-paper py-16">
         <div className="mx-auto max-w-4xl px-6">
-          <h2 className="font-serif text-page-h1 font-medium">Recent essays</h2>
+          <h2 className="font-serif text-page-h1 font-medium">Start here</h2>
           <ul className="mt-6 divide-y divide-dashed divide-rule">
             {homeEssays.map(({ slug, entry }) => (
               <li key={slug} className="py-4">
@@ -82,7 +82,7 @@ export default async function Home() {
       <section className="bg-paper-dark py-12">
         <div className="mx-auto flex max-w-4xl flex-wrap gap-x-12 gap-y-3 px-6 font-serif text-list-title">
           <Link href="/projects" className="hover:text-pen">
-            Building: Fretlore →
+            What I&apos;ve built →
           </Link>
           <Link href="/poems" className="hover:text-pen">
             Poems →

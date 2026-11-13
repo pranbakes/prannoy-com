@@ -41,7 +41,7 @@ export default async function Image() {
             color: "#8C968F",
           }}
         >
-          Essays on whether AI can actually teach. Plus poems.
+          Platforms where people learn and earn. Essays and poems on the rest.
         </div>
       </div>
     ),

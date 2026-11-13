@@ -59,7 +59,8 @@ export default async function PoemsIndex({
         )}
       </ul>
       <p className="mt-10 text-sm text-muted">
-        Poems written in the moment on the backs of receipts live on{" "}
+        Unrevised poems, written on receipts wherever I happen to be, go up
+        on{" "}
         <a
           href="https://www.instagram.com/poetryonreceipts/"
           target="_blank"
