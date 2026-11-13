@@ -40,7 +40,7 @@ export default config({
       schema: {
         greeting: fields.text({
           label: "Greeting (h1)",
-          description: 'The hero line, e.g. "Every job I\'ve had has been a version of teaching 7th grade math."',
+          description: 'The hero line, e.g. "Everything I build started in a 7th grade math classroom."',
         }),
         circledWord: fields.text({
           label: "Circled word",

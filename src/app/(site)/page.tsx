@@ -38,7 +38,7 @@ export default async function Home() {
           <h1 className="font-serif text-hero font-medium">
             {home
               ? renderGreeting(home.greeting, home.circledWord)
-              : "Every job I've had has been a version of teaching 7th grade math."}
+              : "Everything I build started in a 7th grade math classroom."}
           </h1>
           {home?.tagline && (
             <p className="mt-6 max-w-[60ch] font-sans text-sm leading-relaxed text-muted-board">
