@@ -38,9 +38,14 @@ export default config({
       label: "Home",
       path: "content/home/",
       schema: {
+        kicker: fields.text({
+          label: "Kicker",
+          description:
+            "The small line above the headline. Three or four words, separated by the middle dot.",
+        }),
         greeting: fields.text({
           label: "Greeting (h1)",
-          description: 'The hero line, e.g. "Everything I build started in a 7th grade math classroom."',
+          description: 'The hero line. Keep it short and declarative, e.g. "I build platforms where people learn and earn."',
         }),
         circledWord: fields.text({
           label: "Circled word",
