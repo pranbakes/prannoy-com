@@ -58,6 +58,18 @@ export default async function PoemsIndex({
           </li>
         )}
       </ul>
+      <p className="mt-10 text-sm text-muted">
+        Poems written in the moment on the backs of receipts live on{" "}
+        <a
+          href="https://www.instagram.com/poetryonreceipts/"
+          target="_blank"
+          rel="noreferrer"
+          className="text-pen underline underline-offset-4 hover:text-ink"
+        >
+          Poetry on Receipts
+        </a>
+        .
+      </p>
     </div>
   );
 }

@@ -39,49 +39,63 @@ export default function NewsletterSignup() {
     }
   }
 
+  const pitch = (
+    <>
+      <p className="font-serif text-list-title font-medium">The Full Loop</p>
+      <p className="mt-1 max-w-[60ch] text-sm text-muted">
+        One email a month on whether AI is teaching anyone, for people who
+        build learning products.
+      </p>
+    </>
+  );
+
   if (status === "success") {
     return (
       <div className="border-t border-dashed border-rule pt-6">
-        <p className="font-hand text-lg text-pen">
-          you&apos;re in — check your inbox to confirm
+        {pitch}
+        <p className="mt-4 font-hand text-lg text-pen">
+          you&apos;re in. check your inbox to confirm
         </p>
       </div>
     );
   }
 
   return (
-    <form
-      onSubmit={handleSubmit}
-      className="flex flex-col gap-3 border-t border-dashed border-rule pt-6 sm:flex-row sm:items-center"
-    >
-      <label htmlFor="bd-email" className="font-hand text-lg text-pen">
-        get new essays by email
-      </label>
-      <div className="flex flex-1 flex-col gap-2 sm:flex-row">
-        <div className="flex flex-1 gap-2">
-          <input
-            id="bd-email"
-            type="email"
-            name="email"
-            required
-            placeholder="you@example.com"
-            disabled={status === "loading"}
-            className="flex-1 border border-rule bg-card px-3 py-2 font-sans text-sm text-ink placeholder:text-muted disabled:opacity-60"
-          />
-          <button
-            type="submit"
-            disabled={status === "loading"}
-            className="border border-ink px-4 py-2 font-sans text-sm hover:bg-ink hover:text-paper disabled:opacity-60"
-          >
-            {status === "loading" ? "…" : "subscribe"}
-          </button>
+    <div className="border-t border-dashed border-rule pt-6">
+      {pitch}
+      <form
+        onSubmit={handleSubmit}
+        className="mt-4 flex flex-col gap-3 sm:flex-row sm:items-center"
+      >
+        <label htmlFor="bd-email" className="font-hand text-lg text-pen">
+          get it by email
+        </label>
+        <div className="flex flex-1 flex-col gap-2 sm:flex-row">
+          <div className="flex flex-1 gap-2">
+            <input
+              id="bd-email"
+              type="email"
+              name="email"
+              required
+              placeholder="you@example.com"
+              disabled={status === "loading"}
+              className="flex-1 border border-rule bg-card px-3 py-2 font-sans text-sm text-ink placeholder:text-muted disabled:opacity-60"
+            />
+            <button
+              type="submit"
+              disabled={status === "loading"}
+              className="border border-ink px-4 py-2 font-sans text-sm hover:bg-ink hover:text-paper disabled:opacity-60"
+            >
+              {status === "loading" ? "…" : "subscribe"}
+            </button>
+          </div>
+          {status === "error" && (
+            <p className="font-hand text-pen sm:ml-2 sm:self-center">
+              {message}
+            </p>
+          )}
         </div>
-        {status === "error" && (
-          <p className="font-hand text-pen sm:ml-2 sm:self-center">
-            {message}
-          </p>
-        )}
-      </div>
-    </form>
+      </form>
+    </div>
   );
 }

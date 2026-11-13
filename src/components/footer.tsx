@@ -1,4 +1,5 @@
 const socials = [
+  { href: "https://www.linkedin.com/in/prannoynambiar", label: "linkedin" },
   { href: "https://twitter.com/prannoy", label: "twitter" },
   { href: "https://github.com/pranbakes", label: "github" },
 ];

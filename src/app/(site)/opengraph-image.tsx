@@ -41,7 +41,7 @@ export default async function Image() {
             color: "#8C968F",
           }}
         >
-          Essays, poems, a corkboard, and projects.
+          Essays on whether AI can actually teach. Plus poems.
         </div>
       </div>
     ),

@@ -11,8 +11,21 @@ const statusLabel: Record<string, string> = {
   acquired: "acquired",
 };
 
+// Live work leads, past work trails. "archived" entries stay in Keystatic
+// (so nothing is lost) but don't render here.
+const statusOrder: Record<string, number> = {
+  live: 0,
+  "in-progress": 1,
+  acquired: 2,
+};
+
 export default async function ProjectsPage() {
-  const projects = await reader.collections.projects.all();
+  const projects = (await reader.collections.projects.all())
+    .filter(({ entry }) => entry.status !== "archived")
+    .sort(
+      (a, b) =>
+        (statusOrder[a.entry.status] ?? 9) - (statusOrder[b.entry.status] ?? 9)
+    );
 
   return (
     <div className="mx-auto max-w-4xl px-6 py-16">

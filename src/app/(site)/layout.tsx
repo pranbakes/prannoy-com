@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import SiteChrome from "@/components/site-chrome";
 
 const description =
-  "Essays on education, work, and philosophy. Poems. Notes from building companies and backing founders.";
+  "A former math teacher, now shaping an AI tutor, writes about whether AI can actually teach. Plus poems.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(

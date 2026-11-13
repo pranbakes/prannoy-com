@@ -1,9 +1,9 @@
-title: Fretboard
+title: Fretlore
 description: >-
-  A fretboard visualizer/practice tool, built out of my own struggle to
-  actually learn the guitar rather than just own one. Still figuring out
-  exactly what it wants to be.
-status: in-progress
+  A music theory tool for guitar: play a chord and Fretlore names it, then
+  suggests what to play next. I built it out of my own struggle to actually
+  learn the guitar rather than just own one.
+status: live
 tags: []
 stack: []
-url: https://github.com/pranbakes/chords-app
+url: https://fretlore.app

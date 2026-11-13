@@ -2,17 +2,17 @@ import Image from "next/image";
 import type { Metadata } from "next";
 import { DocumentRenderer } from "@keystatic/core/renderer";
 import { reader } from "@/lib/reader";
-import { ADVISORY_MAILTO } from "@/lib/mailto";
+import { CONTACT_MAILTO } from "@/lib/mailto";
 
-// The "Working together" copy is authored in Keystatic as a plain
+// The "Get in touch" copy is authored in Keystatic as a plain
 // mailto: link (simple for a non-technical editor to write). This
-// swaps in the full subject/body-prefilled version at render time,
-// so ADVISORY_MAILTO stays the single source of truth instead of a
-// giant encoded string getting pasted into CMS content.
+// swaps in the subject-prefilled version at render time, so
+// CONTACT_MAILTO stays the single source of truth instead of an
+// encoded string getting pasted into CMS content.
 const workingTogetherRenderers = {
   inline: {
     link: ({ children, href }: { children: React.ReactNode; href: string }) => (
-      <a href={href === "mailto:hi@prannoy.com" ? ADVISORY_MAILTO : href}>
+      <a href={href === "mailto:hi@prannoy.com" ? CONTACT_MAILTO : href}>
         {children}
       </a>
     ),
@@ -53,7 +53,7 @@ export default async function AboutPage() {
       {about?.workingTogether && (
         <div className="mt-16 max-w-[520px]">
           <h2 className="font-serif text-list-title font-medium">
-            Working together
+            Get in touch
           </h2>
           <div className="mt-3 font-serif text-essay-body leading-relaxed [&_a]:text-pen [&_a]:underline [&_a]:underline-offset-4 [&_a:hover]:text-ink">
             <DocumentRenderer

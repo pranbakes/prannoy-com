@@ -41,7 +41,7 @@ export default config({
       schema: {
         greeting: fields.text({
           label: "Greeting (h1)",
-          description: 'The hero line, e.g. "Hi, glad you\'re here."',
+          description: 'The hero line, e.g. "Can AI actually teach?"',
         }),
         circledWord: fields.text({
           label: "Circled word",
@@ -52,12 +52,6 @@ export default config({
           label: "Tagline",
           description: "The paragraph beneath the greeting, inside the same dark section.",
           multiline: true,
-        }),
-        advisoryLine: fields.document({
-          label: "Advisory line",
-          description: 'Shown above the newsletter signup. Include a "write to me" mailto link inline.',
-          formatting: { inlineMarks: true },
-          links: true,
         }),
       },
     }),
@@ -78,8 +72,8 @@ export default config({
           formatting: { inlineMarks: true },
         }),
         workingTogether: fields.document({
-          label: "Working together",
-          description: 'The advisory/investing pitch. Include a "write to me" mailto link inline.',
+          label: "Get in touch",
+          description: 'Short contact line under the bio (investing, notes from readers). Include a "write to me" mailto link inline.',
           formatting: { inlineMarks: true },
           links: true,
         }),
@@ -106,6 +100,12 @@ export default config({
           label: "Dek",
           description: "One-sentence summary shown in the essays index.",
           multiline: true,
+        }),
+        featured: fields.checkbox({
+          label: "Featured on homepage",
+          description:
+            "Show this essay on the homepage. Keep it to the essays that answer the homepage question; everything else still appears on /essays.",
+          defaultValue: false,
         }),
         tags: tags(),
         thumbnail: fields.image({
@@ -243,6 +243,7 @@ export default config({
             { label: "live", value: "live" },
             { label: "in progress", value: "in-progress" },
             { label: "acquired", value: "acquired" },
+            { label: "archived (hidden)", value: "archived" },
           ],
           defaultValue: "in-progress",
         }),

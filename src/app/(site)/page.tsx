@@ -2,23 +2,6 @@ import Link from "next/link";
 import { reader } from "@/lib/reader";
 import { Circle } from "@/components/red-pen";
 import NewsletterSignup from "@/components/newsletter-signup";
-import { ADVISORY_MAILTO } from "@/lib/mailto";
-import { DocumentRenderer } from "@keystatic/core/renderer";
-
-// The advisory line is authored in Keystatic as a plain mailto: link
-// (simple for a non-technical editor to write). This swaps in the full
-// subject/body-prefilled version at render time, so ADVISORY_MAILTO
-// stays the single source of truth instead of a giant encoded string
-// getting pasted into CMS content.
-const advisoryLineRenderers = {
-  inline: {
-    link: ({ children, href }: { children: React.ReactNode; href: string }) => (
-      <a href={href === "mailto:hi@prannoy.com" ? ADVISORY_MAILTO : href}>
-        {children}
-      </a>
-    ),
-  },
-};
 
 function renderGreeting(greeting: string, circledWord: string) {
   const idx = circledWord ? greeting.indexOf(circledWord) : -1;
@@ -33,19 +16,20 @@ function renderGreeting(greeting: string, circledWord: string) {
 }
 
 export default async function Home() {
-  const [essays, pins, home] = await Promise.all([
+  const [essays, home] = await Promise.all([
     reader.collections.essays.all(),
-    reader.collections.corkboard.all(),
-    reader.singletons.home.read({ resolveLinkedFiles: true }),
+    reader.singletons.home.read(),
   ]);
 
-  const recentEssays = [...essays]
-    .sort((a, b) => (a.entry.date < b.entry.date ? 1 : -1))
-    .slice(0, 5);
-
-  const recentPins = [...pins]
-    .sort((a, b) => (a.entry.date < b.entry.date ? 1 : -1))
-    .slice(0, 4);
+  // The homepage makes one promise, so it only lists essays marked
+  // "Featured on homepage" in Keystatic. Everything else lives on /essays.
+  // If nothing is featured yet, fall back to the newest three so the
+  // section never renders empty.
+  const byDate = [...essays].sort((a, b) =>
+    a.entry.date < b.entry.date ? 1 : -1
+  );
+  const featured = byDate.filter(({ entry }) => entry.featured);
+  const homeEssays = featured.length > 0 ? featured : byDate.slice(0, 3);
 
   return (
     <div>
@@ -54,7 +38,7 @@ export default async function Home() {
           <h1 className="font-serif text-hero font-medium">
             {home
               ? renderGreeting(home.greeting, home.circledWord)
-              : "Hi, glad you're here."}
+              : "Can AI actually teach?"}
           </h1>
           {home?.tagline && (
             <p className="mt-6 max-w-[60ch] font-sans text-sm leading-relaxed text-muted-board">
@@ -68,7 +52,7 @@ export default async function Home() {
         <div className="mx-auto max-w-4xl px-6">
           <h2 className="font-serif text-page-h1 font-medium">Recent essays</h2>
           <ul className="mt-6 divide-y divide-dashed divide-rule">
-            {recentEssays.map(({ slug, entry }) => (
+            {homeEssays.map(({ slug, entry }) => (
               <li key={slug} className="py-4">
                 <Link href={`/essays/${slug}`} className="block">
                   <p className="font-serif text-list-title">{entry.title}</p>
@@ -76,52 +60,33 @@ export default async function Home() {
                 </Link>
               </li>
             ))}
-            {recentEssays.length === 0 && (
+            {homeEssays.length === 0 && (
               <li className="py-4 text-sm text-muted">
                 No essays published yet.
               </li>
             )}
           </ul>
+          <Link
+            href="/essays"
+            className="mt-4 inline-block font-hand text-lg text-pen hover:text-ink"
+          >
+            all essays →
+          </Link>
+
+          <div className="mt-12">
+            <NewsletterSignup />
+          </div>
         </div>
       </section>
 
-      <section className="bg-paper-dark py-16">
-        <div className="mx-auto max-w-4xl px-6">
-          <h2 className="font-serif text-page-h1 font-medium">Corkboard</h2>
-          {recentPins.length > 0 ? (
-            <div className="mt-6 grid grid-cols-2 gap-4 sm:grid-cols-4">
-              {recentPins.map(({ slug, entry }) => (
-                <Link
-                  key={slug}
-                  href="/corkboard"
-                  className="block -rotate-1 bg-card p-3 shadow-sm"
-                >
-                  <p className="line-clamp-3 font-serif text-sm">
-                    {entry.content.discriminant === "quote"
-                      ? entry.content.value
-                      : entry.attribution}
-                  </p>
-                  <p className="mt-2 font-hand text-pen">{entry.comment}</p>
-                </Link>
-              ))}
-            </div>
-          ) : (
-            <p className="mt-6 font-hand text-pen">coming soon</p>
-          )}
-        </div>
-      </section>
-
-      <section className="bg-paper py-16">
-        <div className="mx-auto max-w-4xl px-6">
-          {home?.advisoryLine && (
-            <div className="mb-8 font-serif text-essay-body leading-relaxed text-muted [&_a]:text-pen [&_a]:underline [&_a]:underline-offset-4 [&_a:hover]:text-ink">
-              <DocumentRenderer
-                document={home.advisoryLine}
-                renderers={advisoryLineRenderers}
-              />
-            </div>
-          )}
-          <NewsletterSignup />
+      <section className="bg-paper-dark py-12">
+        <div className="mx-auto flex max-w-4xl flex-wrap gap-x-12 gap-y-3 px-6 font-serif text-list-title">
+          <Link href="/projects" className="hover:text-pen">
+            Building: Fretlore →
+          </Link>
+          <Link href="/poems" className="hover:text-pen">
+            Poems →
+          </Link>
         </div>
       </section>
     </div>
