@@ -1,0 +1,47 @@
+name: Voice check
+
+# Runs on every push to main (including commits Keystatic makes from /admin)
+# and on pull requests. Only copy that changed gets checked, so older essays
+# don't fail every build. Run `npm run voice` locally to see the whole backlog.
+
+on:
+  push:
+    branches: [main]
+    paths: ["content/**", "src/app/**", "src/components/**", "scripts/voice/**"]
+  pull_request:
+    paths: ["content/**", "src/app/**", "src/components/**", "scripts/voice/**"]
+
+jobs:
+  voice:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Voice rule tests
+        run: node --no-warnings --test scripts/voice/voice.test.ts
+
+      - name: Lint changed copy
+        env:
+          EVENT: ${{ github.event_name }}
+          PR_BASE: ${{ github.event.pull_request.base.sha }}
+          PUSH_BEFORE: ${{ github.event.before }}
+          HEAD: ${{ github.sha }}
+        run: |
+          BASE="$PUSH_BEFORE"
+          [ "$EVENT" = "pull_request" ] && BASE="$PR_BASE"
+          if [ -z "$BASE" ] || [ "$BASE" = "0000000000000000000000000000000000000000" ]; then
+            echo "No base commit to diff against; skipping."
+            exit 0
+          fi
+          mapfile -t FILES < <(git diff --name-only --diff-filter=AMR "$BASE" "$HEAD" -- content src/app src/components)
+          if [ ${#FILES[@]} -eq 0 ]; then
+            echo "No copy changed."
+            exit 0
+          fi
+          node --no-warnings scripts/voice/cli.ts --format=github "${FILES[@]}"
