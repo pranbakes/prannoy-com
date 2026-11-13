@@ -21,6 +21,18 @@ Pure logic (tag aggregation, essay anchor matching) has unit tests, run with Nod
 npm test
 ```
 
+## Voice check
+
+Site copy gets linted for AI-writing markers (banned words, stock phrases, em dashes, "not just X, but Y" templates). Rules live in `scripts/voice/rules.ts`; exceptions go in `scripts/voice/allowlist.json`. Poems are skipped.
+
+```bash
+npm run voice                         # whole site
+npm run voice -- content/about        # one folder or file
+npm run voice -- --strict             # warnings fail too
+```
+
+It also runs in two places on its own. A Claude Code hook (`.claude/settings.json`) checks every file Claude edits and sends it back to fix errors before moving on. A GitHub Action (`.github/workflows/voice.yml`) checks whatever copy changed on each push to `main`, including Keystatic commits from `/admin`, and annotates the commit.
+
 ## Keystatic: local vs. GitHub storage
 
 `keystatic.config.ts` switches storage automatically based on environment — no code change needed to move between them:

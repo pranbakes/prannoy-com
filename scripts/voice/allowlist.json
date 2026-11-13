@@ -1,0 +1,4 @@
+{
+  "_comment": "Exact phrases that are fine even though a rule matches them. Optional \"rule\" and \"file\" narrow the exception. Prannoy edits this file; agents don't.",
+  "allow": []
+}

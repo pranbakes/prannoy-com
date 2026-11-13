@@ -1,0 +1,17 @@
+{
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Edit|Write|MultiEdit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node --no-warnings \"$CLAUDE_PROJECT_DIR/scripts/voice/cli.ts\" --hook",
+            "timeout": 30,
+            "statusMessage": "Checking voice"
+          }
+        ]
+      }
+    ]
+  }
+}
